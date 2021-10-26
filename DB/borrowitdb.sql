@@ -102,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `product_id` INT NOT NULL,
   INDEX `fk_rating_user1_idx` (`user_id` ASC),
   INDEX `fk_rating_product1_idx` (`product_id` ASC),
+  PRIMARY KEY (`product_id`, `user_id`),
   CONSTRAINT `fk_rating_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -149,15 +150,19 @@ DROP TABLE IF EXISTS `borrow` ;
 
 CREATE TABLE IF NOT EXISTS `borrow` (
   `id` INT NOT NULL,
-  `user_id` INT NOT NULL,
+  `borrower_id` INT NOT NULL,
   `product_item_id` INT NOT NULL,
   `borrow_date` DATETIME NULL,
   `return_date` DATETIME NULL,
+  `borrower_rating` INT NULL,
+  `borrower_rating_comments` TEXT NULL,
+  `lender_rating` INT NULL,
+  `lender_rating_comments` TEXT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_rental_user1_idx` (`user_id` ASC),
+  INDEX `fk_rental_user1_idx` (`borrower_id` ASC),
   INDEX `fk_rental_product_item1_idx` (`product_item_id` ASC),
   CONSTRAINT `fk_rental_user1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`borrower_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
