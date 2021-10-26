@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address_id` INT NOT NULL,
   `enabled` TINYINT NULL,
   `role` VARCHAR(45) NULL,
+  `profile_image` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_address_idx` (`address_id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -79,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `product` (
   `description` VARCHAR(1000) NULL,
   `image_url` VARCHAR(3000) NULL,
   `category_id` INT NOT NULL,
-  `version` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_product_category1_idx` (`category_id` ASC),
   CONSTRAINT `fk_product_category1`
@@ -125,6 +125,7 @@ CREATE TABLE IF NOT EXISTS `product_item` (
   `quality` VARCHAR(45) NULL,
   `product_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `version` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_product_item_product1_idx` (`product_id` ASC),
   INDEX `fk_product_item_user1_idx` (`user_id` ASC),
@@ -193,7 +194,41 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `create_date`, `address_id`, `enabled`, `role`) VALUES (1, 'admin', 'admin', NULL, NULL, NULL, NULL, 1, 1, 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `create_date`, `address_id`, `enabled`, `role`, `profile_image`) VALUES (1, 'admin', 'admin', 'Ken', 'Hiveley', 'kenneth.hiveley@gmail.com', NULL, 1, 1, 'ROLE_ADMIN', 'https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `borrowitdb`;
+INSERT INTO `category` (`id`, `category`) VALUES (1, 'Board Game');
+INSERT INTO `category` (`id`, `category`) VALUES (2, 'Movie');
+INSERT INTO `category` (`id`, `category`) VALUES (3, 'Book');
+INSERT INTO `category` (`id`, `category`) VALUES (4, 'VideoGame');
+INSERT INTO `category` (`id`, `category`) VALUES (5, 'Televison');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `borrowitdb`;
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`) VALUES (1, 'Monopoly', 'A family friendly game that most definitely won\'t end any friendships!', 'https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `product_item`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `borrowitdb`;
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`) VALUES (1, 'Mint', 1, 1, 'Classic');
 
 COMMIT;
 
