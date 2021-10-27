@@ -1,7 +1,6 @@
 package com.skilldistillery.borrowit.entities;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
