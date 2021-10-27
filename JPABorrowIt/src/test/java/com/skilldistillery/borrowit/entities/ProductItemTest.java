@@ -46,11 +46,26 @@ class ProductItemTest {
 
 	@Test
 	void test() {
+		
+//		+----+---------+------------+---------+----------------+
+//		| id | quality | product_id | user_id | version        |
+//		+----+---------+------------+---------+----------------+
+//		|  1 | Mint    |          1 |       1 | Classic        |
+//		|  2 | Used    |          2 |       3 | DVD            |
+//		|  3 | Used    |          3 |       4 | Standard       |
+//		|  4 | New     |          4 |       4 | Deluxe Edition |
+//		|  5 | Used    |          5 |       3 | Classic        |
+//		+----+---------+------------+---------+----------------+
 		assertNotNull(productItem);
 		assertEquals("Mint", productItem.getQuality());
-		assertEquals(1, productItem.getProductId());
-		assertEquals(1, productItem.getUserId());
+		assertEquals(1, productItem.getProduct().getId());
+		assertEquals(1, productItem.getUser().getId());
 		assertEquals("Classic", productItem.getVersion());
 	}
 
+//	+----+----------+------------------------------------------------------------------------+----------------------------------------------------------------+-------------+----+---------+------------+---------+---------+
+//	| id | title    | description                                                            | image_url                                                      | category_id | id | quality | product_id | user_id | version |
+//	+----+----------+------------------------------------------------------------------------+----------------------------------------------------------------+-------------+----+---------+------------+---------+---------+
+//	|  1 | Monopoly | A family friendly game that most definitely won't end any friendships! | https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg |           1 |  1 | Mint    |          1 |       1 | Classic |
+//	+----+----------+------------------------------------------------------------------------+----------------------------------------------------------------+-------------+----+---------+------------+---------+---------+
 }

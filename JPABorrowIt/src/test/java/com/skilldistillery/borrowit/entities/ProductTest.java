@@ -52,7 +52,7 @@ class ProductTest {
 		assertEquals("Monopoly", product.getTitle());
 		assertEquals("A family friendly game that most definitely won't end any friendships!", product.getDescription());
 		assertEquals("https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg", product.getImageUrl());
-		assertEquals(1, categoryId());
+		assertEquals(1, product.getCategory().getId());
 	}
 
 }

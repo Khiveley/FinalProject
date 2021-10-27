@@ -16,19 +16,19 @@ import javax.persistence.OneToMany;
 public class Product {
 
 // Fields
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@OneToMany(mappedBy="product")
-	private List <ProductItem> productItems;
+
+	@OneToMany(mappedBy = "product")
+	private List<ProductItem> productItems;
 	private String title;
 	private String description;
-	@Column(name="image_url")
+	@Column(name = "image_url")
 	private String imageUrl;
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 // Getters and Setters
@@ -37,21 +37,17 @@ public class Product {
 		return title;
 	}
 
-
 	public List<ProductItem> getProductItems() {
 		return productItems;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public void setProductItems(List<ProductItem> productItems) {
 		this.productItems = productItems;
@@ -77,7 +73,7 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public Category getCategory(){
+	public Category getCategory() {
 		return category;
 	}
 
@@ -93,17 +89,16 @@ public class Product {
 
 // Constructor with Fields
 
-
-public Product(int id, List<ProductItem> productItems, String title, String description, String imageUrl,
-		Category category) {
-	super();
-	this.id = id;
-	this.productItems = productItems;
-	this.title = title;
-	this.description = description;
-	this.imageUrl = imageUrl;
-	this.category = category;
-}
+	public Product(int id, List<ProductItem> productItems, String title, String description, String imageUrl,
+			Category category) {
+		super();
+		this.id = id;
+		this.productItems = productItems;
+		this.title = title;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.category = category;
+	}
 
 // Hash Code and Equals
 
@@ -132,5 +127,4 @@ public Product(int id, List<ProductItem> productItems, String title, String desc
 		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", category=" + category + "]";
 	}
-
 }
