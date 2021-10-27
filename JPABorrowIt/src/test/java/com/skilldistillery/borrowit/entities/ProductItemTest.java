@@ -93,12 +93,13 @@ class ProductItemTest {
 		assertNotNull(productItem.getUser());
 		assertEquals("admin", productItem.getUser().getUsername());
 		assertEquals("admin", productItem.getUser().getPassword());
-		assertEquals("Ken", productItem.getUser().ge)
-		assertEquals("Hiveley", productItem.getUser())
-		assertEquals(null, productItem.getUser().get)
+		assertEquals("Ken", productItem.getUser().getFirstName());
+		assertEquals("Hiveley", productItem.getUser().getLastName());
+		assertEquals("kenneth.hiveley@gmail.com", productItem.getUser().getEmail());
 		assertEquals("ROLE_ADMIN", productItem.getUser().getRole());
-		assertEquals("Ken", productItem.getUser())
-		assertEquals("Ken", productItem.getUser())
-		assertEquals("Ken", productItem.getUser())
+		assertEquals(null, productItem.getUser().getCreateDate());
+		assertEquals(1, productItem.getUser().getAddress().getId());
+		assertEquals(true, productItem.getUser().getEnabled());
+		assertEquals("https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg", productItem.getUser().getProfileImage());
 	}
 }
