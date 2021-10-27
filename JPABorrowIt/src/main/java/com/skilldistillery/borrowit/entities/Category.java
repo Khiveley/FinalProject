@@ -3,9 +3,9 @@ package com.skilldistillery.borrowit.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,7 +14,7 @@ public class Category {
 	
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String product;
@@ -29,7 +29,7 @@ public class Category {
 
 
 
-	public void setProducts(List<Products> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 
@@ -38,15 +38,15 @@ public class Category {
 		
 		if(!products.contains(product)) {
 			products.add(product);
-			if(product.getCategory() !=null) {
-				product.getCategory().getProducts().remove(product);
+			if(product.getCategoryId() !=null) {
+				product.getCategoryId().getProducts().remove(product);
 			}
-			product.setCategory(this);
+			product.setCategoryId(this);
 		}
 	}
 	
 	public void removeProduct(Product product) {
-		product.setCategory(null);
+		product.setCategoryId(int);
 		if(product !=null) {
 			products.remove(products);
 		}
