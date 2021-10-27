@@ -1,7 +1,6 @@
 package com.skilldistillery.borrowit.entities;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -23,6 +22,22 @@ public class Borrow {
 	
 	@Column(name="return_date")
 	private LocalDateTime returnDate;
+	
+	@Column(name="product_item_id")
+	private int productItem;
+	
+	@Column(name="borrower_id")
+	private int borrowerId;
+	
+	@Column(name="borrower_rating")
+	private int borrowRating;
+	@Column(name="borrower_rating_comments")
+	private String borrowRatingComment;
+	@Column(name="lender_rating")
+	private int lenderRating;
+	@Column(name="lender_rating_comments")
+	private String lenderRatingComment;
+	
 	
 	//Constructors
 
@@ -55,9 +70,61 @@ public class Borrow {
 	public void setReturnDate(LocalDateTime returnDate) {
 		this.returnDate = returnDate;
 	}
+	
+	
+	public int getProductItem() {
+		return productItem;
+	}
+	
+	public void setProductItem(int productItem) {
+		this.productItem = productItem;
+	}
+	
+	public int getBorrowerId() {
+		return borrowerId;
+	}
+	
+	public void setBorrowerId(int borrowerId) {
+		this.borrowerId = borrowerId;
+	}
+	
+	
+	public int getBorrowRating() {
+		return borrowRating;
+	}
+	
+	public void setBorrowRating(int borrowRating) {
+		this.borrowRating = borrowRating;
+	}
+	
+	public String getBorrowRatingComment() {
+		return borrowRatingComment;
+	}
+	
+	public void setBorrowRatingComment(String borrowRatingComment) {
+		this.borrowRatingComment = borrowRatingComment;
+	}
+	
+	public int getLenderRating() {
+		return lenderRating;
+	}
+	
+	public void setLenderRating(int lenderRating) {
+		this.lenderRating = lenderRating;
+	}
+	
+	public String getLenderRatingComment() {
+		return lenderRatingComment;
+	}
+	
+	public void setLenderRatingComment(String lenderRatingComment) {
+		this.lenderRatingComment = lenderRatingComment;
+	}
 
 	//hashcode and equals
 	
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -75,10 +142,29 @@ public class Borrow {
 		return id == other.id;
 	}
 
-	//ToString
 	@Override
 	public String toString() {
-		return "Borrow [id=" + id + ", borrowDate=" + borrowDate + ", returnDate=" + returnDate + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Borrow [id=");
+		builder.append(id);
+		builder.append(", borrowDate=");
+		builder.append(borrowDate);
+		builder.append(", returnDate=");
+		builder.append(returnDate);
+		builder.append(", productItem=");
+		builder.append(productItem);
+		builder.append(", borrowerId=");
+		builder.append(borrowerId);
+		builder.append(", borrowRating=");
+		builder.append(borrowRating);
+		builder.append(", borrowRatingComment=");
+		builder.append(borrowRatingComment);
+		builder.append(", lenderRating=");
+		builder.append(lenderRating);
+		builder.append(", lenderRatingComment=");
+		builder.append(lenderRatingComment);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	
