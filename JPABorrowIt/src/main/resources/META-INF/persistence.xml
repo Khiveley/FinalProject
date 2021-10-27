@@ -5,6 +5,12 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     
+    <class>com.skilldistillery.borrowit.entities.Address</class>
+    <class>com.skilldistillery.borrowit.entities.Borrow</class>
+    <class>com.skilldistillery.borrowit.entities.Category</class>
+    <class>com.skilldistillery.borrowit.entities.Product</class>
+    <class>com.skilldistillery.borrowit.entities.ProductItem</class>
+    <class>com.skilldistillery.borrowit.entities.Rating</class>
     <class>com.skilldistillery.borrowit.entities.User</class>
 
     <properties>
