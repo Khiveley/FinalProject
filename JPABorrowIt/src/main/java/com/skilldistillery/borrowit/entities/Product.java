@@ -1,29 +1,60 @@
 package com.skilldistillery.borrowit.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Product {
 
 // Fields
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@OneToMany(mappedBy="product")
+	private List <ProductItem> productItems;
 	private String title;
 	private String description;
+	@Column(name="image_url")
 	private String imageUrl;
-	private int categoryId;
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private Category category;
 
 // Getters and Setters
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public List<ProductItem> getProductItems() {
+		return productItems;
+	}
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+
+	public void setProductItems(List<ProductItem> productItems) {
+		this.productItems = productItems;
 	}
 
 	public void setTitle(String title) {
@@ -46,12 +77,12 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public Category getCategory(){
+		return category;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 // No Arg Constructor
@@ -62,21 +93,23 @@ public class Product {
 
 // Constructor with Fields
 
-	public Product(int id, String title, String description, String imageUrl, int categoryId) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.imageUrl = imageUrl;
-		this.categoryId = categoryId;
 
-	}
+public Product(int id, List<ProductItem> productItems, String title, String description, String imageUrl,
+		Category category) {
+	super();
+	this.id = id;
+	this.productItems = productItems;
+	this.title = title;
+	this.description = description;
+	this.imageUrl = imageUrl;
+	this.category = category;
+}
 
 // Hash Code and Equals
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoryId, description, id, imageUrl, title);
+		return Objects.hash(category, description, id, imageUrl, title);
 	}
 
 	@Override
@@ -88,7 +121,7 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return categoryId == other.categoryId && Objects.equals(description, other.description) && id == other.id
+		return category == other.category && Objects.equals(description, other.description) && id == other.id
 				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(title, other.title);
 	}
 
@@ -97,7 +130,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
-				+ ", categoryId=" + categoryId + "]";
+				+ ", category=" + category + "]";
 	}
 
 }
