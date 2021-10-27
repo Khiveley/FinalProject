@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Address {
+	//fields
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +21,14 @@ public class Address {
 	
 	private Integer zip;
 
+	
+	// Constructor
 	public Address() {
 		super();
 	}
 
+	
+	//Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -55,6 +60,8 @@ public class Address {
 	public void setZip(Integer zip) {
 		this.zip = zip;
 	}
+	
+	//hashcode and equals
 
 	@Override
 	public int hashCode() {
@@ -72,6 +79,8 @@ public class Address {
 		Address other = (Address) obj;
 		return id == other.id;
 	}
+	
+	//toString
 
 	@Override
 	public String toString() {

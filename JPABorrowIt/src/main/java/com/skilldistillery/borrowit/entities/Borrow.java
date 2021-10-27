@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Entity
 public class Borrow {
 	
+	//fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -22,10 +23,14 @@ public class Borrow {
 	
 	@Column(name="return_date")
 	private LocalDateTime returnDate;
+	
+	//Constructors
 
 	public Borrow() {
 		super();
 	}
+	
+	//getters and setters
 
 	public int getId() {
 		return id;
@@ -51,6 +56,8 @@ public class Borrow {
 		this.returnDate = returnDate;
 	}
 
+	//hashcode and equals
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -68,6 +75,7 @@ public class Borrow {
 		return id == other.id;
 	}
 
+	//ToString
 	@Override
 	public String toString() {
 		return "Borrow [id=" + id + ", borrowDate=" + borrowDate + ", returnDate=" + returnDate + "]";
