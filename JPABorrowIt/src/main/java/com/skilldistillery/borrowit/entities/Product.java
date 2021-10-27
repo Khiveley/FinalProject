@@ -23,10 +23,12 @@ public class Product {
 
 	@OneToMany(mappedBy = "product")
 	private List<ProductItem> productItems;
+	
 	private String title;
 	private String description;
 	@Column(name = "image_url")
 	private String imageUrl;
+	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
