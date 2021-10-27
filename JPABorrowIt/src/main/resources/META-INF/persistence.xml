@@ -11,6 +11,7 @@
     <class>com.skilldistillery.borrowit.entities.Product</class>
     <class>com.skilldistillery.borrowit.entities.ProductItem</class>
     <class>com.skilldistillery.borrowit.entities.Rating</class>
+    <class>com.skilldistillery.borrowit.entities.RatingId</class>
     <class>com.skilldistillery.borrowit.entities.User</class>
 
     <properties>

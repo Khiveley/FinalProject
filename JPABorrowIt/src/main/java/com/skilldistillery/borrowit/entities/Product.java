@@ -30,8 +30,19 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	@OneToMany(mappedBy="product")
+	private List<Rating> ratings;
 
 // Getters and Setters
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
 	public String getTitle() {
 		return title;
