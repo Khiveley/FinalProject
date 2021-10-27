@@ -1,15 +1,31 @@
 package com.skilldistillery.borrowit.entities;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class ProductItem {
 
 // Entities
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String quality;
-	private int productId;
-	private int userId;
+	
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	private String version;
 	
 // Getters and Setters
@@ -26,17 +42,18 @@ public class ProductItem {
 	public void setQuality(String quality) {
 		this.quality = quality;
 	}
-	public int getProductId() {
-		return productId;
+	
+	public Product getProduct() {
+		return product;
 	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getVersion() {
 		return version;
@@ -55,18 +72,29 @@ public class ProductItem {
 	
 // Constructor with Fields
 	
-	public ProductItem(int id, String quality, int productId, int userId, String version) {
+	public ProductItem(int id, String quality, Product product, User user, String version) {
 		super();
 		this.id = id;
 		this.quality = quality;
-		this.productId = productId;
-		this.userId = userId;
+		this.product = product;
+		this.user = user;
 		this.version = version;
 	}
 	
-// 	@Override
+// To String
+	
+	@Override
+	public String toString() {
+		return "ProductItem [id=" + id + ", quality=" + quality + ", product=" + product + ", user=" + user
+				+ ", version=" + version + "]";
+	}
+	
+
+// Hash Code and Equals
+	
+	@Override
 	public int hashCode() {
-		return Objects.hash(id, productId, quality, userId, version);
+		return Objects.hash(id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -77,16 +105,7 @@ public class ProductItem {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductItem other = (ProductItem) obj;
-		return id == other.id && productId == other.productId && Objects.equals(quality, other.quality)
-				&& userId == other.userId && Objects.equals(version, other.version);
-	}
-	
-// To String
-	
-	@Override
-	public String toString() {
-		return "ProductItem [id=" + id + ", quality=" + quality + ", productId=" + productId + ", userId=" + userId
-				+ ", version=" + version + "]";
+		return id == other.id;
 	}
 	
 

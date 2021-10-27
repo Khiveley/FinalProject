@@ -2,6 +2,7 @@ package com.skilldistillery.borrowit.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +14,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class Product {
-	
+class ProductItemTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Product product;
+	private ProductItem productItem;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,22 +33,24 @@ class Product {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		product = em.find(Product.class, 1);
+		productItem = em.find(ProductItem.class, 1);
 	}
+
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		product = null;
+		productItem = null;
 	}
+
 
 	@Test
 	void test() {
-		assertNotNull(product);
-		assertEquals();
-		assertEquals();
-		assertEquals();
-		assertEquals();
+		assertNotNull(productItem);
+		assertEquals("Mint", productItem.getQuality());
+		assertEquals(1, productItem.getProductId());
+		assertEquals(1, productItem.getUserId());
+		assertEquals("Classic", productItem.getVersion());
 	}
 
 }
