@@ -38,15 +38,15 @@ public class Category {
 		
 		if(!products.contains(product)) {
 			products.add(product);
-			if(product.getCategoryId() !=null) {
-				product.getCategoryId().getProducts().remove(product);
+			if(product.getCategory() !=null) {
+				product.getCategory().getProducts().remove(product);
 			}
-			product.setCategoryId(this);
+			product.setCategory(this);
 		}
 	}
 	
 	public void removeProduct(Product product) {
-		product.setCategoryId(int);
+		product.setCategory(null);
 		if(product !=null) {
 			products.remove(products);
 		}
