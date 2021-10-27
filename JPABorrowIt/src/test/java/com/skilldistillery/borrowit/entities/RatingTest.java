@@ -49,5 +49,21 @@ class RatingTest {
 		assertEquals(4, rating.getRating());
 		
 	}
+	
+	@Test
+	void test_rating_user_relationship_mapping() {
+		assertNotNull(rating);
+		assertEquals(1, rating.getId().getUserId());
+		
+	}
+	@Test
+	void test_rating_product_relationship_mapping() {
+		assertNotNull(rating);
+		assertEquals(1, rating.getId().getProductId());
+		
+	}
+
+	
+	
 
 }
