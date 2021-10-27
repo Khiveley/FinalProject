@@ -41,10 +41,19 @@ class CategoryTest {
 	}
 	
 	@Test
+//	+----+------------+
+//	| id | category   |
+//	+----+------------+
+//	|  1 | Board Game |
+//	|  2 | Movie      |
+//	|  3 | Book       |
+//	|  4 | VideoGame  |
+//	|  5 | Televison  |
+//	+----+------------+
 	void testCategory() {
 		assertNotNull(category);
-		assertEquals("Board Game", category.getProduct());
-		assertEquals(1, category.getProduct().length());
+		assertEquals("Board Game", category.getCategory());
+		assertEquals(2, category.getProducts().size());
 	}
 
 

@@ -16,8 +16,8 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	private String product;
+	
+	private String category;
 	
 	@OneToMany(mappedBy="category")
 	private List<Product> products;
@@ -64,18 +64,21 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getProduct() {
-		return product;
+
+	public String getCategory() {
+		return category;
 	}
 
-	public void setProduct(String product) {
-		this.product = product;
+
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
+
+
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=").append(id).append(", product=").append(product).append("]");
-		return builder.toString();
+		return "Category [id=" + id + ", category=" + category + " ]";
 	}
 }
