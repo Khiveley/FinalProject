@@ -1,7 +1,6 @@
 package com.skilldistillery.borrowit.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class BorrowTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Borrow borrow;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +31,19 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		borrow = em.find(Borrow.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		borrow = null;
 	}
 
 	@Test
 	void test_User_entitiy_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertNotNull(borrow);
+//		assertEquals("admin", borrow.getBorrowDate());
 	}
 
 }
