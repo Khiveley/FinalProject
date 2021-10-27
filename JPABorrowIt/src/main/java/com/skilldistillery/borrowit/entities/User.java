@@ -1,12 +1,14 @@
 package com.skilldistillery.borrowit.entities;
 
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -19,6 +21,17 @@ public class User {
 	private Boolean enabled;
 	private String role;
 	
+	@OneToMany(mappedBy="user")
+	private List<Rating> ratings;
+	
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
 	public User() {
 	}
 
