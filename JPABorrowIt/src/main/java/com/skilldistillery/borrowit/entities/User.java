@@ -1,9 +1,11 @@
 package com.skilldistillery.borrowit.entities;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class User {
@@ -20,8 +24,24 @@ public class User {
 	
 	private String username;
 	private String password;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	private String email;
+	
+	@CreationTimestamp
+	@Column(name="create_date")
+	private LocalDateTime createDate;
+	
 	private Boolean enabled;
 	private String role;
+	
+	@Column(name="profile_image")
+	private String profileImage;
 	
 	@ManyToOne
 	@JoinColumn(name = "address_id")
@@ -51,6 +71,56 @@ public class User {
 		this.borrows = borrows;
 		this.ratings = ratings;
 		this.products = products;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 
 
@@ -155,26 +225,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", enabled=");
-		builder.append(enabled);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append(", address=");
-		builder.append(address);
-		builder.append(", borrows=");
-		builder.append(borrows);
-		builder.append(", ratings=");
-		builder.append(ratings);
-		builder.append(", products=");
-		builder.append(products);
-		builder.append("]");
-		return builder.toString();
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", createDate=" + createDate + ", enabled=" + enabled
+				+ ", role=" + role + ", profileImage=" + profileImage + "]";
 	}  
 }
