@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address {
 	//fields
@@ -23,6 +25,7 @@ public class Address {
 	
 	private Integer zip;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="address")
 	private List<User> users;
 	
