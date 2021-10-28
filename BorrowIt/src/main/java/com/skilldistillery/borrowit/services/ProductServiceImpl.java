@@ -2,14 +2,21 @@ package com.skilldistillery.borrowit.services;
 
 import java.util.List;
 
-import com.skilldistillery.borrowit.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.borrowit.entities.Product;
+import com.skilldistillery.borrowit.repositories.ProductRepository;
+
+@Service
 public class ProductServiceImpl implements ProductService{
 
+	@Autowired
+	ProductRepository prodRepo;
+	
 	@Override
 	public List<Product> index() {
-		// TODO Auto-generated method stub
-		return null;
+				return prodRepo.findAll();
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.borrowit.entities.Product;
 
-@Service
+
 public interface ProductService {
 
 	public List<Product> index();

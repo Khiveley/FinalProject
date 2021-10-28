@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Product {
 
@@ -21,6 +23,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@JsonIgnoreProperties({"product"})
 	@OneToMany(mappedBy = "product")
 	private List<ProductItem> productItems;
 	
@@ -34,6 +37,7 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	@JsonIgnoreProperties({"product"})
 	@OneToMany(mappedBy="product")
 	private List<Rating> ratings;
 

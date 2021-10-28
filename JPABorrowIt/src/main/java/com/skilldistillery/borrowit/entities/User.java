@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User {
 	@Id
@@ -47,13 +50,15 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@JsonIgnoreProperties({"user"})
 	@OneToMany(mappedBy="user")
 	private List<Borrow> borrows;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Rating> ratings;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<ProductItem> products;
 	
