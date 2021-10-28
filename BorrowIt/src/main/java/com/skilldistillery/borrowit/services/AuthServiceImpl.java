@@ -1,55 +1,37 @@
 package com.skilldistillery.borrowit.services;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-@Configuration
-@EnableWebSecurity
-public class AuthServiceImpl extends WebSecurityConfigurerAdapter {
+import com.skilldistillery.borrowit.entities.User;
+import com.skilldistillery.borrowit.repositories.UserRepository;
 
-    // this you get for free when you configure the db connection in application.properties file
-    @Autowired
-    private DataSource dataSource;
+@Service
+public class AuthServiceImpl implements AuthService {
+	
+	@Autowired
+	private UserRepository userRepo;
 
-    // this bean is created in the application starter class if you're looking for it
-    @Autowired
-    private PasswordEncoder encoder;
+	@Autowired
+	private PasswordEncoder encoder;
+	
+	@Override
+	public User register(User user) {
+		String encodedPW = encoder.encode(user.getPassword());
+		user.setPassword(encodedPW); // only persist encoded password
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-        .csrf().disable()
-        .authorizeRequests()
-        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
-        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
-        .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
-        .anyRequest().permitAll()               // All other requests are allowed without authorization.
-        .and()
-        .httpBasic();                           // Use HTTP Basic Authentication
+		// set other fields to default values
+		user.setEnabled(true);
+		user.setRole("standard");
 
-        http
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
+		userRepo.saveAndFlush(user);
+		return user;
+	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        String userQuery = "SELECT username, password, enabled FROM User WHERE username=?";
-        String authQuery = "SELECT username, role FROM User WHERE username=?";
-        auth
-        .jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery(userQuery)
-        .authoritiesByUsernameQuery(authQuery)
-        .passwordEncoder(encoder);
-    }
+	@Override
+	public User getUser(String username) {
+		return userRepo.findByUsername(username);
+	}
+
 }
