@@ -44,21 +44,61 @@ public class User {
 	private Boolean enabled;
 	private String role;
 	
+<<<<<<< HEAD
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToMany(mappedBy="user")
+	private List<Borrow> borrows;
+	
+=======
 	@Column(name="profile_image")
 	private String profileImage;
+>>>>>>> 632106ceceb3b495c973f14083f92d4d294ffca3
 	
 	@OneToMany(mappedBy="user")
 	private List<Rating> ratings;
 	
+	@OneToMany(mappedBy="user")
+	private List<ProductItem> products;
+	
+	
+	//constructor
+	public User(int id, String username, String password, Boolean enabled, String role, Address address,
+			List<Borrow> borrows, List<Rating> ratings, List<ProductItem> products) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+		this.address = address;
+		this.borrows = borrows;
+		this.ratings = ratings;
+		this.products = products;
+	}
+
+
+	//no arg constructor
+	public User() {
+		super();
+	}
+	
+
+	// setters and getters	
+	public List<Borrow> getBorrows() {
+		return borrows;
+	}
+	public void setBorrow(List<Borrow>  borrows) {
+		this.borrows = borrows;
+	}
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
-	}
-
-	public User() {
 	}
 
 	public int getId() {
@@ -149,6 +189,27 @@ public class User {
 		this.role = role;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public List<ProductItem> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductItem> products) {
+		this.products = products;
+	}
+
+	public void setBorrows(List<Borrow> borrows) {
+		this.borrows = borrows;
+	}
+
+
+	// hashcode and equals
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -168,11 +229,36 @@ public class User {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [id=");
+		builder.append(id);
+		builder.append(", username=");
+		builder.append(username);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", enabled=");
+		builder.append(enabled);
+		builder.append(", role=");
+		builder.append(role);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", borrows=");
+		builder.append(borrows);
+		builder.append(", ratings=");
+		builder.append(ratings);
+		builder.append(", products=");
+		builder.append(products);
+		builder.append("]");
+		return builder.toString();
+	}  
+=======
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", createDate=" + createDate + ", enabled=" + enabled
 				+ ", role=" + role + ", profileImage=" + profileImage + "]";
 	}   
 	
 	   
+>>>>>>> 632106ceceb3b495c973f14083f92d4d294ffca3
 }
 
