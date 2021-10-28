@@ -21,6 +21,22 @@ public class Rating {
 	@Column(name="rating_comment")
 	private String ratingComment;
 	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	@MapsId(value="productId")
