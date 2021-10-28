@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,18 +23,56 @@ public class User {
 	private Boolean enabled;
 	private String role;
 	
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToMany(mappedBy="user")
+	private List<Borrow> borrows;
+	
+	
 	@OneToMany(mappedBy="user")
 	private List<Rating> ratings;
 	
+	@OneToMany(mappedBy="user")
+	private List<ProductItem> products;
+	
+	
+	//constructor
+	public User(int id, String username, String password, Boolean enabled, String role, Address address,
+			List<Borrow> borrows, List<Rating> ratings, List<ProductItem> products) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+		this.address = address;
+		this.borrows = borrows;
+		this.ratings = ratings;
+		this.products = products;
+	}
+
+
+	//no arg constructor
+	public User() {
+		super();
+	}
+	
+
+	// setters and getters	
+	public List<Borrow> getBorrows() {
+		return borrows;
+	}
+	public void setBorrow(List<Borrow>  borrows) {
+		this.borrows = borrows;
+	}
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
-	}
-
-	public User() {
 	}
 
 	public int getId() {
@@ -75,6 +115,27 @@ public class User {
 		this.role = role;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public List<ProductItem> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductItem> products) {
+		this.products = products;
+	}
+
+	public void setBorrows(List<Borrow> borrows) {
+		this.borrows = borrows;
+	}
+
+
+	// hashcode and equals
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -105,9 +166,15 @@ public class User {
 		builder.append(enabled);
 		builder.append(", role=");
 		builder.append(role);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", borrows=");
+		builder.append(borrows);
+		builder.append(", ratings=");
+		builder.append(ratings);
+		builder.append(", products=");
+		builder.append(products);
 		builder.append("]");
 		return builder.toString();
-	}   
-	
-	   
+	}  
 }

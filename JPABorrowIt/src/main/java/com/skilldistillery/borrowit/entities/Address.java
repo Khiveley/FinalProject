@@ -1,11 +1,13 @@
 package com.skilldistillery.borrowit.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -20,7 +22,10 @@ public class Address {
 	private String state;
 	
 	private Integer zip;
-
+	
+	@OneToMany(mappedBy="address")
+	private List<User> users;
+	
 	
 	// Constructor
 	public Address() {
@@ -61,7 +66,17 @@ public class Address {
 		this.zip = zip;
 	}
 	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
 	//hashcode and equals
+
+
 
 	@Override
 	public int hashCode() {
@@ -84,7 +99,19 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Address [id=");
+		builder.append(id);
+		builder.append(", city=");
+		builder.append(city);
+		builder.append(", state=");
+		builder.append(state);
+		builder.append(", zip=");
+		builder.append(zip);
+		builder.append(", users=");
+		builder.append(users);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 

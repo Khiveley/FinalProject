@@ -150,7 +150,7 @@ DROP TABLE IF EXISTS `borrow` ;
 
 CREATE TABLE IF NOT EXISTS `borrow` (
   `id` INT NOT NULL,
-  `borrower_id` INT NOT NULL,
+  `lender_id` INT NOT NULL,
   `product_item_id` INT NOT NULL,
   `borrow_date` DATETIME NULL,
   `return_date` DATETIME NULL,
@@ -158,11 +158,12 @@ CREATE TABLE IF NOT EXISTS `borrow` (
   `borrower_rating_comments` TEXT NULL,
   `lender_rating` INT NULL,
   `lender_rating_comments` TEXT NULL,
+  `borrower_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_rental_user1_idx` (`borrower_id` ASC),
+  INDEX `fk_rental_user1_idx` (`lender_id` ASC),
   INDEX `fk_rental_product_item1_idx` (`product_item_id` ASC),
   CONSTRAINT `fk_rental_user1`
-    FOREIGN KEY (`borrower_id`)
+    FOREIGN KEY (`lender_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -266,7 +267,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `borrow` (`id`, `borrower_id`, `product_item_id`, `borrow_date`, `return_date`, `borrower_rating`, `borrower_rating_comments`, `lender_rating`, `lender_rating_comments`) VALUES (1, 2, 1, '2021-10-27 00:00:00', '2021-11-03 00:00:00', 3, NULL, 5, NULL);
+INSERT INTO `borrow` (`id`, `lender_id`, `product_item_id`, `borrow_date`, `return_date`, `borrower_rating`, `borrower_rating_comments`, `lender_rating`, `lender_rating_comments`, `borrower_id`) VALUES (1, 1, 1, '2021-10-27 00:00:00', '2021-11-03 00:00:00', 3, NULL, 5, NULL, 2);
 
 COMMIT;
 

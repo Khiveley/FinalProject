@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Borrow {
@@ -37,6 +39,10 @@ public class Borrow {
 	private int lenderRating;
 	@Column(name="lender_rating_comments")
 	private String lenderRatingComment;
+	
+	@ManyToOne
+	@JoinColumn(name="lender_id")
+	private User user;
 	
 	
 	//Constructors
@@ -120,10 +126,18 @@ public class Borrow {
 	public void setLenderRatingComment(String lenderRatingComment) {
 		this.lenderRatingComment = lenderRatingComment;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 
 	//hashcode and equals
 	
-
 
 	@Override
 	public int hashCode() {
@@ -163,14 +177,9 @@ public class Borrow {
 		builder.append(lenderRating);
 		builder.append(", lenderRatingComment=");
 		builder.append(lenderRatingComment);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
-	
-	
-
 }

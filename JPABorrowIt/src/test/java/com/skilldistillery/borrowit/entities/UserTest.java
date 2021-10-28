@@ -42,9 +42,37 @@ class UserTest {
 	}
 
 	@Test
-	void test_User_entitiy_mapping() {
+	void test_user_entitiy_mapping() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	
+	@Test
+	void test_user_address_relationship() {
+		assertNotNull(user);
+		assertEquals("CO", user.getAddress().getState());
+		assertEquals("Whereever", user.getAddress().getCity());
+	}
+	
+	@Test
+	void test_user_borrow_relationship() {
+		assertNotNull(user);
+		assertEquals(1, user.getBorrows().size());
+	}
+	
+	@Test
+	void test_user_rating_relationship() {
+		assertNotNull(user);
+		assertEquals(1, user.getRatings().size());
+	}
+	
+	@Test
+	void test_user_productItem_relationship() {
+		assertNotNull(user);
+		assertEquals(1, user.getProducts().size());
+	}
+	
+	
+	
 
 }
