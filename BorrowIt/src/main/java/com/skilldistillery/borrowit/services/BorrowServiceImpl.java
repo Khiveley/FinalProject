@@ -15,6 +15,11 @@ public class BorrowServiceImpl implements BorrowService{
 	@Autowired
 	private BorrowRepository borrowRepo;
 
+	@Override
+	public List<Borrow> index() {
+
+		return borrowRepo.findAll();
+	}
 
 	@Override
 	public Borrow show(String name, int bid) {
@@ -23,7 +28,7 @@ public class BorrowServiceImpl implements BorrowService{
 	}
 
 	@Override
-	public Borrow create(String name, Borrow borrow) {
+	public Borrow create(String name, Borrow borrow) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -39,5 +44,6 @@ public class BorrowServiceImpl implements BorrowService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

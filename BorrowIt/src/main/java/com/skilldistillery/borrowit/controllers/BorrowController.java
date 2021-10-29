@@ -28,6 +28,10 @@ public class BorrowController {
 	@Autowired
 	private BorrowService borrowSvc;
 	
+	@GetMapping("borrows")
+	public List<Borrow> index(HttpServletRequest req, HttpServletResponse res) {
+		return borrowSvc.index();
+	}
 
 	@GetMapping("borrows/{bid}")
 	public Borrow show(HttpServletRequest req,
