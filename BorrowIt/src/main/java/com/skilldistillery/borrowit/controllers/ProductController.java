@@ -1,5 +1,6 @@
 package com.skilldistillery.borrowit.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,65 +29,55 @@ public class ProductController {
 	public ProductService prodSvc;
 
 	@GetMapping("products")
-	public List<Product> index(
-			HttpServletRequest req, 
-			HttpServletResponse res) {
-			return prodSvc.index();
+	public List<Product> index(HttpServletRequest req,
+			HttpServletResponse res
+			) {
+		return prodSvc.index();
 
 	}
-	
+
 	@GetMapping("products/{id}")
-	public Product show(
-			HttpServletRequest req,
+	public Product show(HttpServletRequest req,
 			HttpServletResponse res,
 			@PathVariable int id
 			) {
-			return prodSvc.show(id);
-		
+		return prodSvc.show(id);
 	}
-	
+
 	@PostMapping("products")
-	public Product create(
-			HttpServletRequest req,
+	public Product create(HttpServletRequest req,
 			HttpServletResponse res,
 			@RequestBody Product product
 			) {
+		
 		product = prodSvc.create(product);
 		if (product == null) {
 			res.setStatus(400);
 		}
 		return product;
 	}
-	
-	@PutMapping("products/{tid}")
-	public Product update(
-			HttpServletRequest req,
+
+	@PutMapping("products/{id}")
+	public Product update(HttpServletRequest req,
 			HttpServletResponse res,
-			@PathVariable int id, 
+			@PathVariable int id,
 			@RequestBody Product product
 			) {
-			product = prodSvc.update(id, product);
-			if(product == null) {
-				res.setStatus(400);
-			}
-				return product;
-		
+		product = prodSvc.update(id, product);
+		if (product == null) {
+			res.setStatus(400);
+		}
+		return product;
 	}
-	
+
 	@DeleteMapping("products/{id}")
-	public void destroy(
-			HttpServletRequest req,
+	public boolean destroy(HttpServletRequest req,
 			HttpServletResponse res,
 			@PathVariable int id
 			) {
-		if (prodSvc.destroy(id)) {
-			res.setStatus(204);
-		}
-		else {
-			res.setStatus(404);
-		}
+		prodSvc.destroy(id);
+		
+		return true;
 	}
-	
-	
-	
 }
+
