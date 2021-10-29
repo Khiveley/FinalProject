@@ -1,5 +1,6 @@
 package com.skilldistillery.borrowit.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,9 +50,10 @@ public class ProductController {
 	public Product create(
 			HttpServletRequest req,
 			HttpServletResponse res,
-			@RequestBody Product product
+			@RequestBody Product product,
+			Principal principal
 			) {
-		product = prodSvc.create(product);
+		product = prodSvc.create(principal.getName(), product);
 		if (product == null) {
 			res.setStatus(400);
 		}

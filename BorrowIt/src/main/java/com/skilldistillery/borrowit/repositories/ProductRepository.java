@@ -10,6 +10,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	public Product queryById(int productId);
 	
-//add enabled to db. usee instead of findall	public List <Product> findByEnabled();
+//add enabled to db. use instead of findall	public List <Product> findByEnabled();
 
 }

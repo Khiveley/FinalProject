@@ -21,7 +21,6 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product show(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
