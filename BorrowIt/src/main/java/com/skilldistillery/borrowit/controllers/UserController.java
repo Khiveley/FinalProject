@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.borrowit.entities.User;
+import com.skilldistillery.borrowit.services.AuthService;
 import com.skilldistillery.borrowit.services.UserService;
 
 @RestController
@@ -25,6 +26,12 @@ public class UserController {
 	
 	@Autowired
 	private UserService userSvc;
+	
+	
+	@Autowired
+	private AuthService authSvc;
+	
+	
 	
 	@GetMapping("ping")
 	public String ping() {
@@ -61,7 +68,8 @@ public class UserController {
 			HttpServletRequest req, 
 			HttpServletResponse res, 
 			@RequestBody User user) {
-		 user = userSvc.create(user);
+		 
+		user = authSvc.register(user);
 		 if (user == null) {
 			 res.setStatus(400);
 		 }
