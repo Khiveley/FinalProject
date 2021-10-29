@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `product_item` (
   `product_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `version` VARCHAR(500) NULL,
-  `available` TINYINT NULL,
+  `available` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_product_item_product1_idx` (`product_id` ASC),
   INDEX `fk_product_item_user1_idx` (`user_id` ASC),
@@ -255,11 +255,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (1, 'Mint', 1, 1, 'Classic', NULL);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (2, 'Used', 2, 3, 'DVD', NULL);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (3, 'Used', 3, 4, 'Standard', NULL);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (4, 'New', 4, 4, 'Deluxe Edition', NULL);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (5, 'Used', 5, 3, 'Classic', NULL);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (1, 'Mint', 1, 1, 'Classic', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (2, 'Used', 2, 3, 'DVD', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (3, 'Used', 3, 4, 'Standard', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (4, 'New', 4, 4, 'Deluxe Edition', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (5, 'Used', 5, 3, 'Classic', true);
 
 COMMIT;
 
