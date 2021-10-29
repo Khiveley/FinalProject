@@ -27,20 +27,27 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product create(String username, Product product) {
+	public Product create(Product product) {
 		prodRepo.saveAndFlush(product);
 		return product;
 	}
 
 	@Override
-	public Product update(String username, int id, Product product) {
+	public Product update(int id, Product product) {
+		Product existingProduct = prodRepo(id);
+		if(existingProduct != null) {
+			existingProduct.setTitle(product.getTitle());
+			existingProduct.setDescription(product.getDescription());
+			existingProduct.setImageUrl(product.getImageUrl());
+	}
 		return null;
 	}
 
 	@Override
-	public boolean destroy(String username, int id) {
+	public boolean destroy(int id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

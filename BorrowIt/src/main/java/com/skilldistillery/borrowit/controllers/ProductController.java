@@ -32,7 +32,7 @@ public class ProductController {
 	public List<Product> index(HttpServletRequest req,
 			HttpServletResponse res
 			) {
-		return prodSvc.index();
+		return prodSvc.index(username);
 
 	}
 
@@ -50,9 +50,9 @@ public class ProductController {
 	public Product create(HttpServletRequest req,
 			HttpServletResponse res,
 			@RequestBody Product product,
-			Principal principal) {
+			) {
 		
-		product = prodSvc.create(principal.getName(), product);
+		product = prodSvc.create( product);
 		if (product == null) {
 			res.setStatus(400);
 		}

@@ -9,8 +9,6 @@ import com.skilldistillery.borrowit.entities.Product;
 
 public interface ProductService {
 
-	public List<Product> index();
-
 	public Product show(int id);
 
 	Product create(String username, Product product);
@@ -18,6 +16,8 @@ public interface ProductService {
 	Product update(String username, int id, Product product);
 
 	boolean destroy(String username, int id);
+
+	List<Product> index();
 
 
 }
