@@ -1,7 +1,7 @@
 package com.skilldistillery.borrowit.services;
 
-import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,47 +27,43 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User show(int id) {
-		return userRepo.getById(id);
-	}
-
-	@Override
-	public User create(Principal principal, User user) {
-		return userRepo.saveAndFlush(user);
-	}
-
-	@Override
-	public User update(Principal principal, int id, User user) {
-		// TODO Auto-generated method stub
-		User currentUser = userRepo.getById(id);
-		if (currentUser != null) {
-			currentUser.setAddress(user.getAddress());
-			currentUser.setBorrows(user.getBorrows());
-			currentUser.setUsername(user.getUsername());
-			currentUser.setPassword(user.getPassword());
-			currentUser.setEnabled(user.getEnabled());
-			currentUser.setEmail(user.getEmail());
-			currentUser.setRole(user.getRole());
-			currentUser.setRatings(user.getRatings());
-			currentUser.setProducts(user.getProducts());
-			currentUser.setFirstName(user.getFirstName());
-			currentUser.setLastName(user.getLastName());
-			currentUser.setProfileImage(user.getProfileImage());
-			currentUser.setCreateDate(user.getCreateDate());
-			userRepo.saveAndFlush(currentUser);
-			return currentUser;
+		Optional<User> user = userRepo.findById(id);
+		if (user.isPresent()) {
+			return user.get();
 		}
 		return null;
 	}
 
 	@Override
-	public boolean destroy(Principal principal, int id) {
-		User savedUser = userRepo.getById(id);
-		userRepo.deleteById(id);
-		if (savedUser !=null) {
-			return false;
-		} else {
-			return true;
-		}
+	public User create(User user) {
+		return userRepo.saveAndFlush(user);
 	}
+
+
+	@Override
+	public User update(int id, User user) {
+		Optional<User> savedUser = userRepo.findById(id);
+		User updatedUser = null;
+		if (savedUser.isPresent()) {
+			updatedUser = savedUser.get();
+			updatedUser.setAddress(user.getAddress());
+			updatedUser.setBorrows(user.getBorrows());
+			updatedUser.setUsername(user.getUsername());
+			updatedUser.setPassword(user.getPassword());
+			updatedUser.setEnabled(user.getEnabled());
+			updatedUser.setEmail(user.getEmail());
+			updatedUser.setRole(user.getRole());
+			updatedUser.setRatings(user.getRatings());
+			updatedUser.setProducts(user.getProducts());
+			updatedUser.setFirstName(user.getFirstName());
+			updatedUser.setLastName(user.getLastName());
+			updatedUser.setProfileImage(user.getProfileImage());
+			updatedUser.setCreateDate(user.getCreateDate());
+			userRepo.saveAndFlush(updatedUser);
+			return updatedUser;
+		}
+		return null;
+	}
+
 
 }
