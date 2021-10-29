@@ -21,7 +21,7 @@ USE `borrowitdb` ;
 DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(50) NULL,
   `state` VARCHAR(45) NULL,
   `zip` INT NULL,
@@ -63,7 +63,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `category` ;
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `category` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `product` ;
 
 CREATE TABLE IF NOT EXISTS `product` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(1000) NULL,
   `image_url` TEXT NULL,
@@ -151,7 +151,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `borrow` ;
 
 CREATE TABLE IF NOT EXISTS `borrow` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `lender_id` INT NOT NULL,
   `product_item_id` INT NOT NULL,
   `borrow_date` DATETIME NULL,
