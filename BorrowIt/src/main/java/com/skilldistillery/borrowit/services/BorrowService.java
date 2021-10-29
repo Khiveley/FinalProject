@@ -10,14 +10,14 @@ public interface BorrowService {
 
 	List<Borrow> index();
 
-	Borrow show(String name, int bid);
+	Borrow show(int bid);
 
 
 	boolean destroy(String name, int bid);
 
-	Borrow update(String name, int bid, Borrow borrow);
+	Borrow update(int bid, Borrow borrow);
 
 
-	Borrow create(String name, Borrow borrow);
+	Borrow create(Borrow borrow);
 
 }
