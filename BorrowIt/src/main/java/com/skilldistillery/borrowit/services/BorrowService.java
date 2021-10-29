@@ -7,7 +7,6 @@ import com.skilldistillery.borrowit.entities.Borrow;
 
 public interface BorrowService {
 
-	List<Borrow> index(String name);
 
 	Borrow show(String name, int bid);
 

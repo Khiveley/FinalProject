@@ -15,11 +15,6 @@ public class BorrowServiceImpl implements BorrowService{
 	@Autowired
 	private BorrowRepository borrowRepo;
 
-	@Override
-	public List<Borrow> index(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Borrow show(String name, int bid) {
