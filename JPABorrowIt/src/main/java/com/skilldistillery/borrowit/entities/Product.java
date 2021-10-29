@@ -40,6 +40,8 @@ public class Product {
 	@JsonIgnoreProperties({"product"})
 	@OneToMany(mappedBy="product")
 	private List<Rating> ratings;
+	
+	private Boolean enabled;
 
 // Getters and Setters
 
@@ -98,6 +100,15 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 
 // No Arg Constructor
 
@@ -106,17 +117,18 @@ public class Product {
 	}
 
 // Constructor with Fields
-
-	public Product(int id, List<ProductItem> productItems, String title, String description, String imageUrl,
-			Category category) {
-		super();
-		this.id = id;
-		this.productItems = productItems;
-		this.title = title;
-		this.description = description;
-		this.imageUrl = imageUrl;
-		this.category = category;
-	}
+public Product(int id, List<ProductItem> productItems, String title, String description, String imageUrl,
+		Category category, List<Rating> ratings, Boolean enabled) {
+	super();
+	this.id = id;
+	this.productItems = productItems;
+	this.title = title;
+	this.description = description;
+	this.imageUrl = imageUrl;
+	this.category = category;
+	this.ratings = ratings;
+	this.enabled = enabled;
+}
 
 // Hash Code and Equals
 
@@ -142,7 +154,25 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
-				+ ", category=" + category + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Product [id=");
+		builder.append(id);
+		builder.append(", productItems=");
+		builder.append(productItems);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", imageUrl=");
+		builder.append(imageUrl);
+		builder.append(", category=");
+		builder.append(category);
+		builder.append(", ratings=");
+		builder.append(ratings);
+		builder.append(", enabled=");
+		builder.append(enabled);
+		builder.append("]");
+		return builder.toString();
 	}
+
 }
