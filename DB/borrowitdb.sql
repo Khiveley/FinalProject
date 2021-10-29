@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `product_item` (
   `product_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `version` VARCHAR(500) NULL,
-  `avalible` TINYINT NULL,
+  `available` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_product_item_product1_idx` (`product_id` ASC),
   INDEX `fk_product_item_user1_idx` (`user_id` ASC),
@@ -231,11 +231,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (1, 'Monopoly', 'A family friendly game that most definitely won\'t end any friendships!', 'https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg', 1, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (2, 'John Wick', 'Best \"you messed with the wrong guy\" story I ever saw.', 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg', 2, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (3, 'Mario Party', 'A videogame of a board game!', 'https://m.media-amazon.com/images/I/91DTMquoGiS._SY445_.jpg', 3, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (4, 'Mario Kart 8', 'A fun racing game!', 'https://m.media-amazon.com/images/I/71pPBrKODxL._AC_SY879_.jpg', 3, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (5, 'Connect 4', 'A two player board game', 'https://target.scene7.com/is/image/Target/GUEST_d86c944e-f500-4967-8810-4bec7d71df86?wid=488&hei=488&fmt=pjpeg', 1, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (1, 'Monopoly', 'A family friendly game that most definitely won\'t end any friendships!', 'https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg', 1, NULL);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (2, 'John Wick', 'Best \"you messed with the wrong guy\" story I ever saw.', 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg', 2, NULL);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (3, 'Mario Party', 'A videogame of a board game!', 'https://m.media-amazon.com/images/I/91DTMquoGiS._SY445_.jpg', 3, NULL);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (4, 'Mario Kart 8', 'A fun racing game!', 'https://m.media-amazon.com/images/I/71pPBrKODxL._AC_SY879_.jpg', 3, NULL);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (5, 'Connect 4', 'A two player board game', 'https://target.scene7.com/is/image/Target/GUEST_d86c944e-f500-4967-8810-4bec7d71df86?wid=488&hei=488&fmt=pjpeg', 1, NULL);
 
 COMMIT;
 
@@ -255,11 +255,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `avalible`) VALUES (1, 'Mint', 1, 1, 'Classic', true);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `avalible`) VALUES (2, 'Used', 2, 3, 'DVD', true);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `avalible`) VALUES (3, 'Used', 3, 4, 'Standard', true);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `avalible`) VALUES (4, 'New', 4, 4, 'Deluxe Edition', true);
-INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `avalible`) VALUES (5, 'Used', 5, 3, 'Classic', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (1, 'Mint', 1, 1, 'Classic', NULL);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (2, 'Used', 2, 3, 'DVD', NULL);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (3, 'Used', 3, 4, 'Standard', NULL);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (4, 'New', 4, 4, 'Deluxe Edition', NULL);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (5, 'Used', 5, 3, 'Classic', NULL);
 
 COMMIT;
 
