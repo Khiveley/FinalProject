@@ -1,6 +1,7 @@
 package com.skilldistillery.borrowit.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,31 +17,49 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Product> index() {
-				return prodRepo.findAll();
+		return prodRepo.findAll();
 	}
 
 	@Override
-	public Product show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product show(int productId) {
+		Optional<Product> productOpt =prodRepo.findById(productId);
+		return productOpt.get();
 	}
 
 	@Override
 	public Product create(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		product.setEnabled(true);
+		prodRepo.saveAndFlush(product);
+		return product;
 	}
 
 	@Override
-	public Product update(int id, Product product) {
-		// TODO Auto-generated method stub
+	public Product update(Integer id, Product product) {
+		Optional<Product> productOpt= prodRepo.findById(id);
+		
+		if(productOpt.isPresent()) {
+			Product managedProduct = productOpt.get();
+			managedProduct.setTitle(product.getTitle());
+			managedProduct.setDescription(product.getDescription());
+			managedProduct.setImageUrl(product.getImageUrl());
+			prodRepo.saveAndFlush(managedProduct);
+			return managedProduct;
+	}
 		return null;
 	}
-
+	
 	@Override
-	public boolean destroy(int id) {
-		// TODO Auto-generated method stub
+	public boolean destroy(Integer id) {
+		Optional<Product> productOpt= prodRepo.findById(id);
+		
+		if(productOpt.isPresent()) {
+			Product managedProduct = productOpt.get();
+			managedProduct.setEnabled(false);
+			prodRepo.saveAndFlush(managedProduct);
+			return true;
+	}
 		return false;
 	}
+
 
 }

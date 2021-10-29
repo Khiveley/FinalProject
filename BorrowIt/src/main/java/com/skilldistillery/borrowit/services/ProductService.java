@@ -9,15 +9,15 @@ import com.skilldistillery.borrowit.entities.Product;
 
 public interface ProductService {
 
-	public List<Product> index();
-
+	List<Product> index();
+	
 	public Product show(int id);
 
-	public Product create(Product product);
+	Product create(Product product);
 
-	public Product update(int id, Product product);
+	Product update(Integer id, Product product);
 
-	public boolean destroy(int id);
+	boolean destroy(Integer id);
 
 
 }

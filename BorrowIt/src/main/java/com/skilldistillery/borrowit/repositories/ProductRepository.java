@@ -9,7 +9,14 @@ import com.skilldistillery.borrowit.entities.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	public Product queryById(int productId);
+
+//	public List<Product> index(){
+//	}
+//
+//	public Product (int id) {
+//		
+//	}
 	
-//add enabled to db. usee instead of findall	public List <Product> findByEnabled();
+//add enabled to db. use instead of findall	public List <Product> findByEnabled();
 
 }
