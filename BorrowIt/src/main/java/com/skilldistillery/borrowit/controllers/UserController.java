@@ -1,6 +1,5 @@
 package com.skilldistillery.borrowit.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,24 +49,23 @@ public class UserController {
 			HttpServletRequest req, 
 			HttpServletResponse res, 
 			@PathVariable int id) {
-		User User = userSvc.show(id);
-		if (User == null) {
+		User user = userSvc.show(id);
+		if (user == null) {
 			res.setStatus(404);
 		}
-		return User;
+		return user;
 	}
 
 	@PostMapping("users")
 	public User create(
 			HttpServletRequest req, 
 			HttpServletResponse res, 
-			@RequestBody User User, 
-			Principal principal) {
-		 User = userSvc.create(principal, User);
-		 if (User == null) {
+			@RequestBody User user) {
+		 user = userSvc.create(user);
+		 if (user == null) {
 			 res.setStatus(400);
 		 }
-		 return User;
+		 return user;
 	}
 
 	@PutMapping("users/{id}")
@@ -76,26 +73,12 @@ public class UserController {
 			HttpServletRequest req, 
 			HttpServletResponse res,
 			@PathVariable int id,
-			@RequestBody User User, 
-			Principal principal) {
-		User = userSvc.update(principal, id, User);
-		 if (User == null) {
+			@RequestBody User user) {
+		user = userSvc.update(id, user);
+		 if (user == null) {
 			 res.setStatus(400);
 		 }
-		 return User;
-	}
-
-	@DeleteMapping("users/{id}")
-	public void destroy(
-			HttpServletRequest req, 
-			HttpServletResponse res, 
-			@PathVariable int id, 
-			Principal principal) {
-		if (userSvc.destroy(principal, id)) {
-		res.setStatus(204);
-	} else {
-		res.setStatus(404);
-	}
+		 return user;
 	}
 
 }
