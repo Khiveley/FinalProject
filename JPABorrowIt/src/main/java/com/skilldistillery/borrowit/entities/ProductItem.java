@@ -30,6 +30,7 @@ public class ProductItem {
 	private User user;
 	
 	private String version;
+	private Boolean available;
 	
 // Getters and Setters
 	
@@ -64,6 +65,12 @@ public class ProductItem {
 	public void setVersion(String version) {
 		this.version = version;
 	}
+	public Boolean getAvailable() {
+		return available;
+	}
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
 	
 	
 // No Arg Constructor
@@ -74,23 +81,16 @@ public class ProductItem {
 
 	
 // Constructor with Fields
-	
-	public ProductItem(int id, String quality, Product product, User user, String version) {
-		super();
-		this.id = id;
-		this.quality = quality;
-		this.product = product;
-		this.user = user;
-		this.version = version;
-	}
-	
-// To String
-	
-	@Override
-	public String toString() {
-		return "ProductItem [id=" + id + ", quality=" + quality + ", product=" + product + ", user=" + user
-				+ ", version=" + version + "]";
-	}
+
+public ProductItem(int id, String quality, Product product, User user, String version, Boolean available) {
+	super();
+	this.id = id;
+	this.quality = quality;
+	this.product = product;
+	this.user = user;
+	this.version = version;
+	this.available = available;
+}
 	
 
 // Hash Code and Equals
@@ -111,7 +111,24 @@ public class ProductItem {
 		return id == other.id;
 	}
 	
-
+// To String
 	
-
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ProductItem [id=");
+		builder.append(id);
+		builder.append(", quality=");
+		builder.append(quality);
+		builder.append(", product=");
+		builder.append(product);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", version=");
+		builder.append(version);
+		builder.append(", available=");
+		builder.append(available);
+		builder.append("]");
+		return builder.toString();
+	}
 }
