@@ -45,11 +45,9 @@ public class ProductItemServiceImpl implements ProductItemService{
 		Optional<ProductItem> prodOpt = repo.findById(id);
 		if (prodOpt.isPresent()) {
 			ProductItem managedProductItem = prodOpt.get();
-			managedProductItem.setProduct(productItem.getProduct());
 			managedProductItem.setQuality(productItem.getQuality());
-			managedProductItem.setVersion(productItem.getVersion());
-			managedProductItem.setUser(productItem.getUser());
-			repo.saveAndFlush(productItem);
+			managedProductItem.setAvailable(productItem.getAvailable());
+			repo.saveAndFlush(managedProductItem);
 			return managedProductItem;
 		}
 		return productItem;
