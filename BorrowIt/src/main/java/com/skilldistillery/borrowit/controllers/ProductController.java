@@ -57,7 +57,7 @@ public class ProductController {
 		return product;
 	}
 
-	@PutMapping("products/{tid}")
+	@PutMapping("products/{id}")
 	public Product update(HttpServletRequest req,
 			HttpServletResponse res,
 			@PathVariable int id,
@@ -70,15 +70,14 @@ public class ProductController {
 		return product;
 	}
 
-//	@DeleteMapping("products/{id}")
-//	public void destroy(HttpServletRequest req,
-//			HttpServletResponse res,
-//			@PathVariable int id,
-//			) {
-//		if (prodSvc.destroy(id)) {
-//			res.setStatus(204);
-//		} else {
-//			res.setStatus(404);
-//		}
-//	}
+	@DeleteMapping("products/{id}")
+	public boolean destroy(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable int id
+			) {
+		prodSvc.destroy(id);
+		
+		return true;
+	}
 }
+

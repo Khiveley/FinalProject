@@ -17,5 +17,7 @@ public interface ProductService {
 
 	Product update(Integer id, Product product);
 
+	boolean destroy(Integer id);
+
 
 }

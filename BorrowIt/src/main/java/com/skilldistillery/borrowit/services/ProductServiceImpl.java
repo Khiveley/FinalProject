@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product create(Product product) {
+		product.setEnabled(true);
 		prodRepo.saveAndFlush(product);
 		return product;
 	}
@@ -35,21 +36,30 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product update(Integer id, Product product) {
 		Optional<Product> productOpt= prodRepo.findById(id);
-		Product managedProduct = null;
+		
 		if(productOpt.isPresent()) {
+			Product managedProduct = productOpt.get();
 			managedProduct.setTitle(product.getTitle());
 			managedProduct.setDescription(product.getDescription());
 			managedProduct.setImageUrl(product.getImageUrl());
 			prodRepo.saveAndFlush(managedProduct);
+			return managedProduct;
 	}
-		return managedProduct;
+		return null;
 	}
-
-//	@Override
-//	public boolean destroy(int id) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+	
+	@Override
+	public boolean destroy(Integer id) {
+		Optional<Product> productOpt= prodRepo.findById(id);
+		
+		if(productOpt.isPresent()) {
+			Product managedProduct = productOpt.get();
+			managedProduct.setEnabled(false);
+			prodRepo.saveAndFlush(managedProduct);
+			return true;
+	}
+		return false;
+	}
 
 
 }
