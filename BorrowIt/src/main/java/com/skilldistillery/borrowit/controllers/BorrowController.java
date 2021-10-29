@@ -46,10 +46,9 @@ public class BorrowController {
 	
 	//POST
 
-	@PostMapping("productitems")
+	@PostMapping("borrows")
 	public Borrow create(HttpServletRequest req, HttpServletResponse res,
-			@RequestBody Borrow borrow, int productItemId) {
-		
+			@RequestBody Borrow borrow) {
 		
 		borrow =	borrowSvc.create(borrow);
 		if( borrow == null) {
@@ -58,7 +57,7 @@ public class BorrowController {
 		return borrow;
 	}
 
-	@PutMapping("productitems/{bid}")
+	@PutMapping("borrows/{bid}")
 	public Borrow update(HttpServletRequest req, 
 			HttpServletResponse res,
 			@PathVariable int bid, 
@@ -73,7 +72,7 @@ public class BorrowController {
 		return borrow;
 	}
 
-	@DeleteMapping("productitems/{bid}")
+	@DeleteMapping("borrows/{bid}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res,
 			@PathVariable int bid, Principal principal) {
 		if(borrowSvc.destroy(principal.getName(), bid)) {
