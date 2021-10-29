@@ -48,7 +48,7 @@ public class BorrowController {
 
 	@PostMapping("productitems")
 	public Borrow create(HttpServletRequest req, HttpServletResponse res,
-			@RequestBody Borrow borrow, Principal principal) {
+			@RequestBody Borrow borrow, int productItemId) {
 		
 		
 		borrow =	borrowSvc.create(borrow);

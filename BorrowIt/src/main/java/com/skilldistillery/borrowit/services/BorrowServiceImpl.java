@@ -29,6 +29,10 @@ public class BorrowServiceImpl implements BorrowService {
 		}
 		return null;
 	}
+	
+//	`Borrow`            |`POST api/productitems`       | Create a borrow                         |
+//	|`Borrow`            |`PUT api/productitems/{id}`   | Replace an existing borrow by id        |
+//	|`void`              |`DELETE api/productitems/{id}`| Delete an existing borrow by id       
 
 	@Override
 	public Borrow create(Borrow borrow) {
