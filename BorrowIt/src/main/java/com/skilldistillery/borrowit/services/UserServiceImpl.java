@@ -65,5 +65,17 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public boolean destroy(Integer id) {
+		Optional<User> userOpt = userRepo.findById(id);
+		if(userOpt.isPresent()) {
+			User managedUser = userOpt.get();
+			managedUser.setEnabled(false);
+			userRepo.saveAndFlush(managedUser);
+			return true;
+		}
+		return false;
+	}
+
 
 }
