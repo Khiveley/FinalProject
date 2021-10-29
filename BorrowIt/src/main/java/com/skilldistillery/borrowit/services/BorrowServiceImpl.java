@@ -1,6 +1,7 @@
 package com.skilldistillery.borrowit.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,9 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.borrowit.entities.Borrow;
 import com.skilldistillery.borrowit.repositories.BorrowRepository;
 
-
 @Service
-public class BorrowServiceImpl implements BorrowService{
-	
+public class BorrowServiceImpl implements BorrowService {
+
 	@Autowired
 	private BorrowRepository borrowRepo;
 
@@ -22,28 +22,31 @@ public class BorrowServiceImpl implements BorrowService{
 	}
 
 	@Override
-	public Borrow show(String name, int bid) {
-		// TODO Auto-generated method stub
+	public Borrow show(int bid) {
+		Optional<Borrow> borrowOp = borrowRepo.findById(bid);
+		if (borrowOp.isPresent()) {
+			return borrowOp.get();
+		}
 		return null;
 	}
 
 	@Override
-	public Borrow create(String name, Borrow borrow) { 
-		// TODO Auto-generated method stub
-		return null;
+	public Borrow create(Borrow borrow) {
+		borrowRepo.save(borrow);
+		return borrow;
 	}
 
 	@Override
 	public boolean destroy(String name, int bid) {
-		// TODO Auto-generated method stub
+//borrow doesnt need a delete
 		return false;
 	}
 
 	@Override
-	public Borrow update(String name, int bid, Borrow borrow) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Borrow update(int bid, Borrow borrow) {
+		borrowRepo.save(borrow);
 
+		return borrow;
+	}
 
 }

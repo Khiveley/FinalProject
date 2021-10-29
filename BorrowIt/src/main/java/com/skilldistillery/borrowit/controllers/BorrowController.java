@@ -37,7 +37,7 @@ public class BorrowController {
 	public Borrow show(HttpServletRequest req,
 			HttpServletResponse res,@PathVariable int bid, Principal principal) {
 		
-		Borrow borrow = borrowSvc.show(principal.getName(), bid);
+		Borrow borrow = borrowSvc.show(bid);
 		if(borrow == null) {
 			res.setStatus(404);
 		}
@@ -51,7 +51,7 @@ public class BorrowController {
 			@RequestBody Borrow borrow, Principal principal) {
 		
 		
-		borrow =	borrowSvc.create(principal.getName(), borrow);
+		borrow =	borrowSvc.create(borrow);
 		if( borrow == null) {
 			res.setStatus(400);
 		}
@@ -65,7 +65,7 @@ public class BorrowController {
 			@RequestBody Borrow borrow,
 			Principal principal) {
 		
-		borrow= borrowSvc.update(principal.getName(), bid, borrow);
+		borrow= borrowSvc.update(bid, borrow);
 		if(borrow == null)
 		{		
 			res.setStatus(404);
