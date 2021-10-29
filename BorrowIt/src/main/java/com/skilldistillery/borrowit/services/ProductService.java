@@ -13,11 +13,11 @@ public interface ProductService {
 
 	public Product show(int id);
 
-	public Product create(Product product);
+	Product create(String username, Product product);
 
-	public Product update(int id, Product product);
+	Product update(String username, int id, Product product);
 
-	public boolean destroy(int id);
+	boolean destroy(String username, int id);
 
 
 }
