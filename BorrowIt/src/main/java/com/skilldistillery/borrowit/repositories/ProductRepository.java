@@ -10,9 +10,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	public Product queryById(int productId);
 
-	public List<Product> findByUser_Username(String username);
-
-	public Product findByUser_UsernameAndId(String username, int id);
+//	public List<Product> index(){
+//	}
+//
+//	public Product (int id) {
+//		
+//	}
 	
 //add enabled to db. use instead of findall	public List <Product> findByEnabled();
 

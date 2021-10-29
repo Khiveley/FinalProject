@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Product> index() {
-				return prodRepo.findAll();
+		return prodRepo.findAll();
 	}
 
 	@Override
@@ -33,21 +33,23 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product update(int id, Product product) {
-		Product existingProduct = prodRepo(id);
-		if(existingProduct != null) {
-			existingProduct.setTitle(product.getTitle());
-			existingProduct.setDescription(product.getDescription());
-			existingProduct.setImageUrl(product.getImageUrl());
+	public Product update(Integer id, Product product) {
+		Optional<Product> productOpt= prodRepo.findById(id);
+		Product managedProduct = null;
+		if(productOpt.isPresent()) {
+			managedProduct.setTitle(product.getTitle());
+			managedProduct.setDescription(product.getDescription());
+			managedProduct.setImageUrl(product.getImageUrl());
+			prodRepo.saveAndFlush(managedProduct);
 	}
-		return null;
+		return managedProduct;
 	}
 
-	@Override
-	public boolean destroy(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean destroy(int id) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 
 }

@@ -32,7 +32,7 @@ public class ProductController {
 	public List<Product> index(HttpServletRequest req,
 			HttpServletResponse res
 			) {
-		return prodSvc.index(username);
+		return prodSvc.index();
 
 	}
 
@@ -41,18 +41,16 @@ public class ProductController {
 			HttpServletResponse res,
 			@PathVariable int id
 			) {
-		
 		return prodSvc.show(id);
-
 	}
 
 	@PostMapping("products")
 	public Product create(HttpServletRequest req,
 			HttpServletResponse res,
-			@RequestBody Product product,
+			@RequestBody Product product
 			) {
 		
-		product = prodSvc.create( product);
+		product = prodSvc.create(product);
 		if (product == null) {
 			res.setStatus(400);
 		}
@@ -63,27 +61,24 @@ public class ProductController {
 	public Product update(HttpServletRequest req,
 			HttpServletResponse res,
 			@PathVariable int id,
-			@RequestBody Product product,
-			Principal principal
+			@RequestBody Product product
 			) {
-		product = prodSvc.update(principal.getName(), id, product);
+		product = prodSvc.update(id, product);
 		if (product == null) {
 			res.setStatus(400);
 		}
 		return product;
-
 	}
 
-	@DeleteMapping("products/{id}")
-	public void destroy(HttpServletRequest req,
-			HttpServletResponse res,
-			@PathVariable int id,
-			Principal principal
-			) {
-		if (prodSvc.destroy(principal.getName(), id)) {
-			res.setStatus(204);
-		} else {
-			res.setStatus(404);
-		}
-	}
+//	@DeleteMapping("products/{id}")
+//	public void destroy(HttpServletRequest req,
+//			HttpServletResponse res,
+//			@PathVariable int id,
+//			) {
+//		if (prodSvc.destroy(id)) {
+//			res.setStatus(204);
+//		} else {
+//			res.setStatus(404);
+//		}
+//	}
 }
