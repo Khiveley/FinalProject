@@ -31,7 +31,7 @@ public class ProductItemServiceImpl implements ProductItemService{
 
 	@Override
 	public List<ProductItem> getAllAvailableProductItems() {
-		return repo.findbyBorrowed(false);
+		return repo.findByAvailable(true);
 	}
 
 	@Override

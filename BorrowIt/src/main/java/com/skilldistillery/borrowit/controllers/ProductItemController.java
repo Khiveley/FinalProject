@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.borrowit.entities.ProductItem;
@@ -21,6 +22,7 @@ import com.skilldistillery.borrowit.services.ProductItemService;
 import com.skilldistillery.borrowit.services.UserService;
 
 @RestController
+@RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4301" })
 public class ProductItemController {
 	
@@ -36,12 +38,12 @@ public class ProductItemController {
 	}
 
 	@GetMapping("productItem")
-	public List<ProductItem> getAllEvents() {
+	public List<ProductItem> getAllProductItems() {
 		return prodItemSvc.getAll();
 	}
 	
 	@GetMapping("productItem/available")
-	public List<ProductItem> getAllEventsAvailable() {
+	public List<ProductItem> getAllProductItemsAvailable() {
 		return prodItemSvc.getAllAvailableProductItems();
 	}
 

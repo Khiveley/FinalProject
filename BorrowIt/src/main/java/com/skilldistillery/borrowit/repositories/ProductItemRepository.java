@@ -8,6 +8,6 @@ import com.skilldistillery.borrowit.entities.ProductItem;
 
 public interface ProductItemRepository extends JpaRepository<ProductItem, Integer> {
 
-	List<ProductItem> findbyBorrowed(boolean b);
+	List<ProductItem> findByAvailable(boolean b);
 
 }
