@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,10 @@ export class HomeComponent implements OnInit {
   editProduct: Product | null = null;
 
 
-  constructor() { }
+  constructor(
+    private productService: ProductService
+
+  ) { }
 
   ngOnInit(): void {
   }
