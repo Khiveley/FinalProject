@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       (loggedIn) => {
         console.log(loggedIn);
         console.log('Logged in.');
-        this.router.navigateByUrl('/todo');
+        this.router.navigateByUrl('/user');
       },
       (fail) => {
         console.error('LoginComponent.login(): login failed');
