@@ -43,7 +43,7 @@ class BorrowTest {
 	@Test
 	void test_User_entitiy_mapping() {
 		assertNotNull(borrow);
-		assertEquals(3, borrow.getBorrowRating());
+		assertEquals(3, borrow.getBorrowerRating());
 	}
 
 }
