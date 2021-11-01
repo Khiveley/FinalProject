@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.borrowit.entities.Address;
 import com.skilldistillery.borrowit.entities.User;
+import com.skilldistillery.borrowit.repositories.AddressRepository;
 import com.skilldistillery.borrowit.repositories.UserRepository;
 
 @Service
@@ -15,6 +17,8 @@ public class AuthServiceImpl implements AuthService {
 
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private AddressRepository addressRepo;
 	
 	@Override
 	public User register(User user) {
@@ -24,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
 		// set other fields to default values
 		user.setEnabled(true);
 		user.setRole("standard");
-
+		addressRepo.saveAndFlush(user.getAddress());
 		userRepo.saveAndFlush(user);
 		return user;
 	}
