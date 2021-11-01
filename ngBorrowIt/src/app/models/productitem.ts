@@ -4,14 +4,14 @@ import { User } from "./user";
 export class Productitem {
 	id: number;
 	quality: string;
-  product: Product;
+  product: Product = new Product();
   user: User;
   version: string;
   available: boolean;
 
   constructor(id: number = 0,
     quality: string = '',
-    product: Product,
+    product: Product = new Product(),
     user: User,
     version: string = '',
     available: boolean = false
@@ -22,6 +22,7 @@ export class Productitem {
       this.user = user;
       this.version = version;
       this.available = available;
+      this.product = product;
 
     }
 }
