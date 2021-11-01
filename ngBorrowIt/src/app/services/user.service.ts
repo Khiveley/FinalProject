@@ -31,7 +31,7 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('UserService.index(): error retrieving developers');
+        return throwError('UserService.index(): error retrieving user');
       })
     );
   }
@@ -53,7 +53,7 @@ export class UserService {
       return this.http.post<User>(this.baseUrl, user, this.getHttpOptions()).pipe(
         catchError((err: any) => {
         console.log(err);
-        return throwError('TodoService.create(): Error creating Todo');
+        return throwError('UserService.create(): Error creating user');
       })
     );
   }
@@ -63,7 +63,7 @@ export class UserService {
       return this.http.put<User>(`${this.baseUrl}/${user.id}`, user, this.getHttpOptions()).pipe(
         catchError((err: any) => {
         console.log(err);
-        return throwError('TodoService.update(): Error updating Todo');
+        return throwError('UserService.update(): Error updating User');
       })
     );
     }
@@ -72,9 +72,11 @@ export class UserService {
       return this.http.delete(`${this.baseUrl}/${id}`, this.getHttpOptions()).pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('TodoService.destroy(): Error deleting Todo with Id');
+          return throwError('UserService.destroy(): Error deleting User with Id');
         })
         );
 
       }
+
+
     }
