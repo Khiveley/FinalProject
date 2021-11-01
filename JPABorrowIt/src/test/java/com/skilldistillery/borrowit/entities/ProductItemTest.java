@@ -85,13 +85,13 @@ class ProductItemTest {
 //	+----+----------+----------+------------+-----------+---------------------------+-------------+------------+---------+------------+----------------------------------------------------------------+----+---------+------------+---------+---------+
 //	| id | username | password | first_name | last_name | email                     | create_date | address_id | enabled | role       | profile_image                                                  | id | quality | product_id | user_id | version |
 //	+----+----------+----------+------------+-----------+---------------------------+-------------+------------+---------+------------+----------------------------------------------------------------+----+---------+------------+---------+---------+
-//	|  1 | admin    | admin    | Ken        | Hiveley   | kenneth.hiveley@gmail.com | NULL        |          1 |       1 | ROLE_ADMIN | https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg |  1 | Mint    |          1 |       1 | Classic |
+//	|  1 | admin    | $2a$10$gAmEOD.fVzfs3RiFR3vRluAEvk0X1GyMsx/UvvPOeWxc/cCaCyAFm    | Ken        | Hiveley   | kenneth.hiveley@gmail.com | NULL        |          1 |       1 | ROLE_ADMIN | https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg |  1 | Mint    |          1 |       1 | Classic |
 //	+----+----------+----------+------------+-----------+---------------------------+-------------+------------+---------+------------+----------------------------------------------------------------+----+---------+------------+---------+---------+
 	
 		assertNotNull(productItem);
 		assertNotNull(productItem.getUser());
 		assertEquals("admin", productItem.getUser().getUsername());
-		assertEquals("admin", productItem.getUser().getPassword());
+		assertEquals("$2a$10$gAmEOD.fVzfs3RiFR3vRluAEvk0X1GyMsx/UvvPOeWxc/cCaCyAFm", productItem.getUser().getPassword());
 		assertEquals("Ken", productItem.getUser().getFirstName());
 		assertEquals("Hiveley", productItem.getUser().getLastName());
 		assertEquals("kenneth.hiveley@gmail.com", productItem.getUser().getEmail());
