@@ -1,0 +1,27 @@
+.background-image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('https://i.pinimg.com/originals/fd/00/98/fd00984025b813f8da694ca720b39111.jpg');
+  background-position:50% 50%;
+}
+
+.header{
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 75px;
+}
+
+.welcome{
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 30px;
+}
+
+/* Search Bar */
+.form-control-borderless {
+  border: none;
+}
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
