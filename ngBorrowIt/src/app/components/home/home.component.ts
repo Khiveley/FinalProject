@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 
 @Component({
@@ -13,8 +14,9 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
 
   selected: Product | null = null;
-  // newProduct: Product | null = new Product();
+  newProduct: Product = new Product();
   editProduct: Product | null = null;
+
 
   constructor() { }
 
