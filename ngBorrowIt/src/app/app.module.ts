@@ -12,6 +12,9 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SearchpageComponent } from './components/searchpage/searchpage.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,10 @@ import { SearchpageComponent } from './components/searchpage/searchpage.componen
     NotfoundComponent,
     AboutpageComponent,
     NavigationComponent,
-    SearchpageComponent
+    SearchpageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
