@@ -12,7 +12,7 @@ export class Borrow {
   lenderRating: number;
   borrowerRatingComment: string;
   lenderRatingComment: string;
-  user: User;
+  user: User = new User();
 
   constructor(
     id: number = 0,
@@ -24,7 +24,8 @@ export class Borrow {
     lenderRating: number = 0,
     borrowerRatingComment: string = '',
     lenderRatingComment: string = '',
-    user: User) {
+    user: User = new User()
+    ) {
       this.id = id
       this.borrowDate = borrowDate;
       this.returnDate = returnDate;
