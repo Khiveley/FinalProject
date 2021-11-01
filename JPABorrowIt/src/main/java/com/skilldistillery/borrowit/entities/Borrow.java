@@ -32,9 +32,9 @@ public class Borrow {
 	private int borrowerId;
 	
 	@Column(name="borrower_rating")
-	private int borrowRating;
+	private int borrowerRating;
 	@Column(name="borrower_rating_comments")
-	private String borrowRatingComment;
+	private String borrowerRatingComment;
 	@Column(name="lender_rating")
 	private int lenderRating;
 	@Column(name="lender_rating_comments")
@@ -95,20 +95,20 @@ public class Borrow {
 	}
 	
 	
-	public int getBorrowRating() {
-		return borrowRating;
+	public int getBorrowerRating() {
+		return borrowerRating;
 	}
 	
-	public void setBorrowRating(int borrowRating) {
-		this.borrowRating = borrowRating;
+	public void setBorrowerRating(int borrowerRating) {
+		this.borrowerRating = borrowerRating;
 	}
 	
-	public String getBorrowRatingComment() {
-		return borrowRatingComment;
+	public String getBorrowerRatingComment() {
+		return borrowerRatingComment;
 	}
 	
-	public void setBorrowRatingComment(String borrowRatingComment) {
-		this.borrowRatingComment = borrowRatingComment;
+	public void setBorrowerRatingComment(String borrowerRatingComment) {
+		this.borrowerRatingComment = borrowerRatingComment;
 	}
 	
 	public int getLenderRating() {
@@ -169,10 +169,10 @@ public class Borrow {
 		builder.append(productItem);
 		builder.append(", borrowerId=");
 		builder.append(borrowerId);
-		builder.append(", borrowRating=");
-		builder.append(borrowRating);
-		builder.append(", borrowRatingComment=");
-		builder.append(borrowRatingComment);
+		builder.append(", borrowerRating=");
+		builder.append(borrowerRating);
+		builder.append(", borrowerRatingComment=");
+		builder.append(borrowerRatingComment);
 		builder.append(", lenderRating=");
 		builder.append(lenderRating);
 		builder.append(", lenderRatingComment=");
