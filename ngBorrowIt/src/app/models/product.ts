@@ -18,7 +18,7 @@ export class Product {
     title: string = '',
     description: string = '',
     imageUrl: string = '',
-    category: Category,
+    category: Category= new Category(),
     ratings: Rating[] = [],
     enabled: boolean = false) {
       this.id = id;
@@ -26,7 +26,7 @@ export class Product {
       this.title = title;
       this.description = description;
       this.imageUrl = imageUrl;
-      this.category = category;
+      this.category = category? category: new Category();
       this.ratings = ratings;
       this.enabled = enabled;
     }
