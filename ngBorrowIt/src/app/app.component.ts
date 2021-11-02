@@ -14,5 +14,9 @@ export class AppComponent implements OnInit {
 
   products: Product[] = [ ];
 
+  constructor () {
+    //product item service
+  }
+
 }
 
