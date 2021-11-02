@@ -19,6 +19,8 @@ import { DatePipe } from '@angular/common';
 import { BorrowService } from './services/borrow.service';
 import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { MustLogInComponent } from './components/must-log-in/must-log-in.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { UserService } from './services/user.service';
     AboutpageComponent,
     NavigationComponent,
     SearchpageComponent,
+    LandingPageComponent,
+    MustLogInComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
