@@ -18,11 +18,13 @@ export class HomeComponent implements OnInit {
   title = "BorrowIt";
 
   products: Product[] = [];
-  productItems: Productitem[] = [];
+
 
   selected: Product | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
+  editProductItem: Product | undefined;
+  productItems: Productitem[] | null = [];
   newProductItem: Productitem = new Productitem();
 
   constructor(
@@ -124,6 +126,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  setEditProductItem(): void {
+    this.editProductItem = Object.assign({}, this.selected);
+  }
+
   addProductItem(productitem: Productitem) {
     this.productItemService.create(productitem).subscribe(
       (newProductitem) => {
@@ -138,6 +144,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
   reloadProductItems(): void {
     this.productItemService.index().subscribe(
       (productItems) => {
@@ -149,22 +156,10 @@ export class HomeComponent implements OnInit {
       }
     );
 }
+
+
 displayProductItems(Productitem: Productitem): void {
   this.selected = Productitem;
-}
-
-addProductItems(Productitem: Productitem) {
-  this.ProductItemService.create(Productitem).subscribe(
-    (newProductItem) => {
-      console.log('ProductList.addProduct(): product created successfully');
-      this.reloadProductItems();
-      this.newProductItem = new Productitem();
-    },
-    (err) => {
-      console.error('ProductList.addProduct(): Error creating Product');
-      console.error(err);
-    }
-  );
 }
 
 }
