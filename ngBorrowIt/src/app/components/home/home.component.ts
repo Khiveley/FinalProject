@@ -11,11 +11,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  title = "BorrowIt";
+  title = 'BorrowIt';
 
   products: Product[] = [];
   productItems: Productitem[] = [];
@@ -30,13 +29,13 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productItemService: ProductItemService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let productIdString = this.route.snapshot.paramMap.get('id');
-    if(productIdString){
+    if (productIdString) {
       let productId = Number.parseInt(productIdString);
-      if(!isNaN(productId)){
+      if (!isNaN(productId)) {
         this.productService.show(productId).subscribe(
           (product) => {
             this.reloadProducts();
@@ -105,7 +104,9 @@ export class HomeComponent implements OnInit {
       },
 
       (failure) => {
-        console.error('ProductListComponent.updateProduct(): error updating product');
+        console.error(
+          'ProductListComponent.updateProduct(): error updating product'
+        );
         console.error(failure);
       }
     );
@@ -118,7 +119,9 @@ export class HomeComponent implements OnInit {
         this.reloadProducts();
       },
       (failure) => {
-        console.error('ProductListComponent.deleteProduct(): error deleting product');
+        console.error(
+          'ProductListComponent.deleteProduct(): error deleting product'
+        );
         console.error(failure);
       }
     );
@@ -127,7 +130,9 @@ export class HomeComponent implements OnInit {
   addProductItem(productitem: Productitem) {
     this.productItemService.create(productitem).subscribe(
       (newProductitem) => {
-        console.log('ProductItemList.addProductItem(): product item created successfully');
+        console.log(
+          'ProductItemList.addProductItem(): product item created successfully'
+        );
         this.reloadProductItems();
         this.newProductItem = new Productitem();
       },
@@ -148,23 +153,22 @@ export class HomeComponent implements OnInit {
         console.error(error);
       }
     );
-}
-displayProductItems(Productitem: Productitem): void {
-  this.selected = Productitem;
-}
+  }
+  // displayProductItems(Productitem: Productitem): void {
+  //   this.selected = Productitem;
+  // }
 
-addProductItems(Productitem: Productitem) {
-  this.ProductItemService.create(Productitem).subscribe(
-    (newProductItem) => {
-      console.log('ProductList.addProduct(): product created successfully');
-      this.reloadProductItems();
-      this.newProductItem = new Productitem();
-    },
-    (err) => {
-      console.error('ProductList.addProduct(): Error creating Product');
-      console.error(err);
-    }
-  );
-}
-
+  // addProductItems(Productitem: Productitem) {
+  //   this.ProductItemService.create(Productitem).subscribe(
+  //     (newProductItem) => {
+  //       console.log('ProductList.addProduct(): product created successfully');
+  //       this.reloadProductItems();
+  //       this.newProductItem = new Productitem();
+  //     },
+  //     (err) => {
+  //       console.error('ProductList.addProduct(): Error creating Product');
+  //       console.error(err);
+  //     }
+  //   );
+  // }
 }
