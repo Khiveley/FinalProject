@@ -5,6 +5,33 @@
 //add new productitem
 
 
+<div *ngIf='selected && !editUser'>
+  <p>Username: {{selected}}</p>
+  <p>Email: {{selected}}</p>
+  <p>Password: {{selected}}</p>
+  <p>State: {{selected}}</p>
+  <p>City: {{selected}}</p>
+  <p>Zip: {{selected}}</p>
+<button (click)='displayTable()'>Back</button>
+<button (click)="setEditUser()">Edit</button>
+</div>
+
+<div *ngIf="editUser">
+ Task: <input type="text" name="task" [(ngModel)]="editUser"> <br>
+ Description: <input type="text" name="description" [(ngModel)]="editUser"> <br>
+ Completed: <input type="checkbox" name="completed" [(ngModel)]="editUser"> <br>
+  <button (click)="editUser = null">Cancel</button>
+  <!-- <button (click)="updateUser(editUser)">Save</button> -->
+</div>
+
+<div *ngIf='!selected'>
+  Enter New Product: <input type="text" name="productItem" placeholder="New Item" [(ngModel)]="newProductItem" />
+  <input type="button" value="Submit" (click)="addProductItem(newProductItem)">
+</div>
+<hr>
+
+
+
 
 //list of borrowed current inventory
 <table class="table table-striped table-hover">
