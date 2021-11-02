@@ -25,14 +25,12 @@
           </tbody>
     </table>
 <h4>If an item does not exist, it may be added here:</h4>
-    <div *ngIf="!selected">
+<div id='productDetails' *ngIf="!selected && !editProduct">
     <button (click)="addProduct(newProduct)">Add Product</button>
-    </div>
-    <div id='productDetails' *ngIf="selected && !editProduct">
   <input type="text" name="title" placeholder=Title [(ngModel)]="newProduct.title" />
   <input type="text" name="image"  placeholder=ImageUrl [(ngModel)]="newProduct.imageUrl" />
   <input type="text" name="description"  placeholder=Description [(ngModel)]="newProduct.description" />
   <input type="text" name="category"  placeholder=Category [(ngModel)]="newProduct.category.category" />
-  <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button>
+  <!-- <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button> -->
   </div>
 </html>
