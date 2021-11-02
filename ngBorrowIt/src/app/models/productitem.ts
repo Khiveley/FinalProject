@@ -5,16 +5,16 @@ export class Productitem {
 	id: number;
 	quality: string;
   product: Product = new Product();
-  user: User;
+  user: User | undefined;
   version: string;
   available: boolean;
 
   constructor(id: number = 0,
     quality: string = '',
     product: Product = new Product(),
-    user: User,
     version: string = '',
-    available: boolean = false
+    available: boolean = false,
+    user?: User
     ) {
       this.id = id;
       this.quality = quality;
