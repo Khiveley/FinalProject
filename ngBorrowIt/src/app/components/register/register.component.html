@@ -1,1 +1,17 @@
-<p>register works!</p>
+<div id="registerUser">
+  <form align="center">
+   <label for="username">User Name</label>
+   <input type="text" name ="username" placeholder="Username"[(ngModel)]="newUser.username"><br>
+   <label for="email">Email</label>
+   <input type="text" name ="email" placeholder="Email"[(ngModel)]="newUser.email"><br>
+   <label for="password">Password</label>
+   <input type="password" name ="password" placeholder="Password"[(ngModel)]="newUser.password"><br>
+   <label for="city">City</label>
+   <input type="text" name ="city" placeholder="city"[(ngModel)]="newUser.address.city"><br>
+   <label for="city">State</label>
+   <input type="state" name ="state" placeholder="state"[(ngModel)]="newUser.address.state"><br>
+   <label for="zip">Zip Code</label>
+   <input type="number" name ="zip" placeholder="zip code"[(ngModel)]="newUser.address.zip"><br>
+    <button (click)="register(newUser)">Register Account</button>
+  </form>
+  </div>

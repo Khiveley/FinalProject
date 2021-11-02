@@ -15,6 +15,10 @@ import { SearchpageComponent } from './components/searchpage/searchpage.componen
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+import { DatePipe } from '@angular/common';
+import { BorrowService } from './services/borrow.service';
+import { ProductService } from './services/product.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,13 @@ import { AuthService } from './services/auth.service';
     SearchpageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    DatePipe,
+    BorrowService,
+    ProductService,
+    UserService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

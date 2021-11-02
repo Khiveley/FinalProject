@@ -24,9 +24,9 @@ export class RegisterComponent implements OnInit {
         this.auth.login(this.newUser.username, this.newUser.password).subscribe(
           (next) => {
             console.log(
-              'RegisterComponent.register(): user logged in, routing to /todo.'
+              'RegisterComponent.register(): user logged in, routing to /user.'
             );
-            this.router.navigateByUrl('/todo');
+            this.router.navigateByUrl('/user');
           },
           (error) => {
             console.error('RegisterComponent.register(): error logging in.');
