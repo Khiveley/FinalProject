@@ -7,13 +7,13 @@
 .header{
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 75px;
+  font-size: xx-large;
 }
 
 .welcome{
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 30px;
+  font-size: large;
 }
 
 /* Search Bar */
