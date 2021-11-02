@@ -46,7 +46,7 @@ class RatingTest {
 	@Test
 	void test() {
 		assertNotNull(rating);
-		assertEquals(4, rating.getRating());
+		assertEquals(7, rating.getRating());
 		
 	}
 	
