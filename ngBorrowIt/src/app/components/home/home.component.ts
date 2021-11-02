@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   selected: Product | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
-
+  newProductItem: Productitem = new Productitem();
 
   constructor(
     private productService: ProductService,
