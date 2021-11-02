@@ -34,18 +34,33 @@
     </table>
   </div>
 
-<h4>If an item does not exist, it may be added here:</h4>
+<!-- <h4>If an item does not exist, it may be added here:</h4> -->
 
-    <button (click)="addProduct(newProduct)">Add Product</button>
+    <!-- <button (click)="addProduct(newProduct)">Add Product</button>
   <input type="text" name="title" placeholder=Title [(ngModel)]="newProduct.title" />
   <input type="text" name="image"  placeholder=ImageUrl [(ngModel)]="newProduct.imageUrl" />
   <input type="text" name="description"  placeholder=Description [(ngModel)]="newProduct.description" />
   <input type="text" name="category"  placeholder=Category [(ngModel)]="newProduct.category.category" />
   <!-- <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button> -->
-  </div>
-
+  <!-- </div> -->
+<div class="table">
   <div *ngIf = "selected">
     <h2>{{selected.title}}</h2>
+    <table>
+      <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>Quality/th>
+        <th>Version</th>
+        <th>Location</th>
+      </tr>
+      </thead>
+    <tbody>
+      <tr *ngFor="let productItem of productItems"></tr>
+      </tbody>
+    <tr *ngFor="let product of products">
+    </table>
     <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
     <input type="text" name="version" placeholder="Version" [(ngModel)]="newProductItem.version"/><br>
 
@@ -54,5 +69,5 @@
     <button (click)="addProductItem(newProductItem)">Add Product Item</button>
     <button (click)="displayTable()">Back to Products</button>
   </div>
-
+</div>
     </div>
