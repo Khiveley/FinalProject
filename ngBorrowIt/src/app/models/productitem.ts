@@ -18,7 +18,6 @@ export class Productitem {
     ) {
       this.id = id;
       this.quality = quality;
-      this.product = product;
       this.user = user;
       this.version = version;
       this.available = available;
