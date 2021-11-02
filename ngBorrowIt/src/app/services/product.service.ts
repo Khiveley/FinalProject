@@ -16,7 +16,7 @@ export class ProductService {
 
   constructor(
     private http: HttpClient,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ) { }
 
   index(): Observable<Product[]>{
@@ -46,6 +46,15 @@ export class ProductService {
       })
     );
 
+  }
+
+  update(product: Product) {
+    return this.http.put<Product>(`${this.url}/${product.id}`, product).pipe(
+      catchError((err: any)=>{
+        console.log(err);
+        return throwError('ProductService.update(): Error updating Product');
+      })
+      );
   }
 
   delete(id: number){

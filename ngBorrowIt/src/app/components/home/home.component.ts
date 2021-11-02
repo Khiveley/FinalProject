@@ -63,4 +63,61 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  displayProduct(product: Product): void {
+    this.selected = product;
+  }
+
+  displayTable(): void {
+    this.selected = null;
+  }
+
+  addProduct(product: Product) {
+    this.productService.create(product).subscribe(
+      (newProduct) => {
+        console.log('ProductList.addProduct(): product created successfully');
+        this.reloadProducts();
+        this.newProduct = new Product();
+      },
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
+
+  setEditProduct(): void {
+    this.editProduct = Object.assign({}, this.selected);
+  }
+
+  updateProduct(product: Product, showProduct = true): void {
+    this.productService.update(product).subscribe(
+      (updated) => {
+        this.reloadProducts();
+        this.editProduct = null;
+        if (showProduct) {
+          this.selected = updated;
+        }
+        this.selected = updated;
+      },
+
+      (failure) => {
+        console.error('ProductListComponent.updateProduct(): error updating product');
+        console.error(failure);
+      }
+    );
+  }
+
+  deleteProduct(id: number): void {
+    // this.todoService.destroy(id);
+    this.productService.delete(id).subscribe(
+      (success) => {
+        this.reloadProducts();
+      },
+      (failure) => {
+        console.error('ProductListComponent.deleteProduct(): error deleting product');
+        console.error(failure);
+      }
+    );
+  }
+
 }
