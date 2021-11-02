@@ -76,8 +76,8 @@ DROP TABLE IF EXISTS `product` ;
 
 CREATE TABLE IF NOT EXISTS `product` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NULL,
-  `description` VARCHAR(1000) NULL,
+  `title` VARCHAR(100) NULL,
+  `description` TEXT NULL,
   `image_url` TEXT NULL,
   `category_id` INT NOT NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
   `rating` INT NULL,
-  `rating_comment` VARCHAR(45) NULL,
+  `rating_comment` VARCHAR(500) NULL,
   `user_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   INDEX `fk_rating_user1_idx` (`user_id` ASC),
@@ -232,10 +232,17 @@ COMMIT;
 START TRANSACTION;
 USE `borrowitdb`;
 INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (1, 'Monopoly', 'A family friendly game that most definitely won\'t end any friendships!', 'https://m.media-amazon.com/images/I/91RSg9MCGtL._AC_SY450_.jpg', 1, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (2, 'John Wick', 'Best \"you messed with the wrong guy\" story I ever saw.', 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg', 2, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (3, 'Mario Party', 'A videogame of a board game!', 'https://m.media-amazon.com/images/I/91DTMquoGiS._SY445_.jpg', 3, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (4, 'Mario Kart 8', 'A fun racing game!', 'https://m.media-amazon.com/images/I/71pPBrKODxL._AC_SY879_.jpg', 3, true);
-INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (5, 'Connect 4', 'A two player board game', 'https://target.scene7.com/is/image/Target/GUEST_d86c944e-f500-4967-8810-4bec7d71df86?wid=488&hei=488&fmt=pjpeg', 1, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (2, 'John Wick', 'From Summit Entertainment and the producer of CLASH OF THE TITANS and THE TOWN comes a tale of adrenaline-fueled revenge and redemption. When a retired hit man is forced back into action by a sadistic young thug, he hunts down his adversaries with the skill and ruthlessness that made him an underworld legend.', 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg', 2, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (3, 'Mario Party', 'Outwit friends and family as you race across the board; whoever gets the most stars wins!', 'https://m.media-amazon.com/images/I/91DTMquoGiS._SY445_.jpg', 4, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (4, 'Mario Kart 8', 'Hit the road with the definitive version of Mario Kart 8 and play anytime, anywhere. Race your friends or battle them in a revised battle mode for new and returning battle courses.', 'https://m.media-amazon.com/images/I/71pPBrKODxL._AC_SY879_.jpg', 4, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (5, 'Connect 4', 'Classic Connect 4 game is disc dropping fun\nChoose yellow or red discs. For 2 players\nWhen you get 4 discs in a row you win.', 'https://target.scene7.com/is/image/Target/GUEST_d86c944e-f500-4967-8810-4bec7d71df86?wid=488&hei=488&fmt=pjpeg', 1, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (6, 'Settlers of Catan', 'Get all the resources, except sheep.  They may be fluffy but sheep are baaaaaad.  While you\'re at it build a reaaally long road and build a big army.', 'https://www.boardgamequest.com/wp-content/uploads/2013/04/Settlers-of-Catan-300x243.jpg', 1, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (7, 'Harry Potter and the Deathly Hallows - Part 1', 'Harry, Ron and Hermione set out to track down and destroy the secret to Voldemort’s power – the Horcruxes. On their own and on the run, the three must rely on one another more than ever…but Dark Forces threaten to tear them apart.', 'https://m.media-amazon.com/images/I/51hId6TXbFL.jpg', 2, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (8, 'Harry Potter and the Deathly Hallows - Part 2', 'In the epic finale, the battle between the good and evil forces of the wizarding world escalates into an all-out war. The stakes have never been higher and no one is safe. But it is Harry who may be called upon to make the ultimate sacrifice as he draws closer to the climactic showdown with Lord Voldemort. It all ends here.', 'https://m.media-amazon.com/images/I/51iWChrnwIL.jpg', 2, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (9, 'Star Wars: Darth Plagueis', 'Darth Plagueis: one of the most brilliant Sith Lords who ever lived. Possessing power is all he desires. Losing it is the only thing he fears. As an apprentice, he embraces the ruthless ways of the Sith. And when the time is right, he destroys his Master - but vows never to suffer the same fate. For like no other disciple of the dark side, Darth Plagueis learns to command the ultimate power...over life and death.', 'https://m.media-amazon.com/images/I/51NJOD0ItCL.jpg', 3, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (10, 'The Pillars of The Earth', 'The Pillars of the Earth tells the story of Philip, prior of Kingsbridge, a devout and resourceful monk driven to build the greatest Gothic cathedral the world has known...of Tom, the mason who becomes his architect - a man divided in his soul...of the beautiful, elusive Lady Aliena, haunted by a secret shame...and of a struggle between good and evil that will turn church against state, and brother against brother.  ', 'https://m.media-amazon.com/images/I/51PgXXjpb5L._SY346_.jpg', 3, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (11, 'The Big Bang Theory: The Complete Ninth Season', 'Prepare to enter phase nine of television’s perpetual laughter experiment as THE BIG BANG THEORY successfully fuses the elements of science and sitcom. Our two genius roommates – Leonard and Sheldon ¬– and their friends are back once again (smarter, but no wiser). Last season, Sheldon went soul-searching (on a train, of course) and was prepared to make some substantial revisions on his Relationship Agreement with Amy, when everything changed. Leonard, meanwhile, was off to Vegas with Penny to finally tie the knot in the season finale. Howard finds himself alone with Bernadette after the sudden passing of his mother; while Raj is not only talking to women – he’s getting exclusive with Emily (Laura Spencer). Together, they will all learn that life is far more complicated outside of the lab as love and friendship never produce predictable results!\n\nPrepare to enter phase nine of television’s perpetual laughter experiment as THE BIG BANG THEORY successfully fuses the elements of science and sitcom. Our two genius roommates – Leonard and Sheldon ¬– and their friends are back once again (smarter, but no wiser). Last season, Sheldon went soul-searching (on a train, of course) and was prepared to make some substantial revisions on his Relationship Agreement with Amy, when everything changed. Leonard, meanwhile, was off to Vegas with Penny to finally tie the knot in the season finale. Howard finds himself alone with Bernadette after the sudden passing of his mother; while Raj is not only talking to women – he’s getting exclusive with Emily (Laura Spencer). Together, they will all learn that life is far more complicated outside of the lab as love and friendship never produce predictable results!\n\n', 'https://m.media-amazon.com/images/I/81ksNXITStL._SX342_.jpg', 5, true);
+INSERT INTO `product` (`id`, `title`, `description`, `image_url`, `category_id`, `enabled`) VALUES (12, 'Risk', 'Take over the world in this game of strategy conquest, now with updated figures and improved Mission cards. In the Risk game, the goal is simple: players aim to conquer their enemies’ territories by building an army, moving their troops in, and engaging in battle. Depending on the roll of the dice, a player will either defeat the enemy or be defeated. This exciting game is filled with betrayal, alliances, and surprise attacks. On the battlefield, anything goes!', 'https://m.media-amazon.com/images/I/91jsvpbPP3L._AC_SL1500_.jpg', 1, true);
 
 COMMIT;
 
@@ -245,7 +252,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `borrowitdb`;
-INSERT INTO `rating` (`rating`, `rating_comment`, `user_id`, `product_id`) VALUES (4, NULL, 1, 1);
+INSERT INTO `rating` (`rating`, `rating_comment`, `user_id`, `product_id`) VALUES (7, NULL, 1, 1);
+INSERT INTO `rating` (`rating`, `rating_comment`, `user_id`, `product_id`) VALUES (4, 'This game showed me how fragile alliances can be.', 2, 12);
+INSERT INTO `rating` (`rating`, `rating_comment`, `user_id`, `product_id`) VALUES (10, 'It\'s a masterpiece.', 3, 2);
+INSERT INTO `rating` (`rating`, `rating_comment`, `user_id`, `product_id`) VALUES (8, NULL, 1, 10);
 
 COMMIT;
 
@@ -260,6 +270,13 @@ INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`,
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (3, 'Used', 3, 4, 'Standard', true);
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (4, 'New', 4, 4, 'Deluxe Edition', true);
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (5, 'Used', 5, 3, 'Classic', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (6, 'Used', 6, 1, 'Classic', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (7, 'New', 7, 2, 'Standard', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (8, 'New', 8, 2, 'Standard', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (9, 'Used', 9, 4, 'Paperback', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (10, 'New', 10, 1, 'Paperback', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (11, 'Used', 11, 3, 'DVD', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (12, 'Used', 12, 2, 'Classic', true);
 
 COMMIT;
 
