@@ -5,6 +5,7 @@ import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { Productitem } from 'src/app/models/productitem';
 import { ProductService } from 'src/app/services/product.service';
+import { ProductItemService } from 'src/app/services/product-item.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   title = "BorrowIt";
 
   products: Product[] = [];
+  productItems: Productitem[] = [];
 
   selected: Product | null = null;
   newProduct: Product = new Product();
@@ -26,7 +28,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private productItemService: ProductItemService
   ) { }
 
   ngOnInit(): void {
@@ -120,5 +123,48 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  addProductItem(productitem: Productitem) {
+    this.productItemService.create(productitem).subscribe(
+      (newProductitem) => {
+        console.log('ProductItemList.addProductItem(): product item created successfully');
+        this.reloadProductItems();
+        this.newProductItem = new Productitem();
+      },
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
+
+  reloadProductItems(): void {
+    this.productItemService.index().subscribe(
+      (productItems) => {
+        this.productItems = productItems;
+      },
+      (error) => {
+        console.error('Error retrieving product items');
+        console.error(error);
+      }
+    );
+}
+displayProductItems(Productitem: Productitem): void {
+  this.selected = Productitem;
+}
+
+addProductItems(Productitem: Productitem) {
+  this.ProductItemService.create(Productitem).subscribe(
+    (newProductItem) => {
+      console.log('ProductList.addProduct(): product created successfully');
+      this.reloadProductItems();
+      this.newProductItem = new Productitem();
+    },
+    (err) => {
+      console.error('ProductList.addProduct(): Error creating Product');
+      console.error(err);
+    }
+  );
+}
 
 }
