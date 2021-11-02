@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { subscribeOn } from 'rxjs/operators';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { Productitem } from 'src/app/models/productitem';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   selected: Product | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
-
+  newProductItem: Productitem = new Productitem();
 
   constructor(
     private productService: ProductService,
