@@ -7,7 +7,7 @@ export class Borrow {
   id: number;
   borrowDate: Date;
   returnDate: Date;
-  productItem: Productitem;
+  productItem:  Productitem;
   borrower: User;
   borrowerRating: number;
   lenderRating: number;

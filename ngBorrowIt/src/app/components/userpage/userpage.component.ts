@@ -4,6 +4,8 @@ import { Product } from 'src/app/models/product';
 import { Productitem } from 'src/app/models/productitem';
 import { User } from 'src/app/models/user';
 import { ProductService } from 'src/app/services/product.service';
+import { ProductItemService } from 'src/app/services/product-item.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-userpage',
@@ -17,11 +19,14 @@ export class UserpageComponent implements OnInit {
   newProduct: Product = new Product();
   editProduct: Product | null = null;
   newProductItem: Productitem = new Productitem();
+  categories: Category[] =[];
+
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private productItemService: ProductItemService,
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +50,7 @@ export class UserpageComponent implements OnInit {
       }
     }
     this.reloadProducts();
+    this.reloadCategories();
   }
 
   reloadProducts(): void {
@@ -68,11 +74,13 @@ export class UserpageComponent implements OnInit {
   }
 
   addProduct(product: Product) {
+    console.log(product);
     this.productService.create(product).subscribe(
       (newProduct) => {
         console.log('ProductList.addProduct(): product created successfully');
         this.reloadProducts();
         this.newProduct = new Product();
+        this.newProduct.category=this.categories[0];
       },
       (err) => {
         console.error('ProductList.addProduct(): Error creating Product');
@@ -119,7 +127,51 @@ export class UserpageComponent implements OnInit {
       }
     );
   }
+  addProductItem(productitem: Productitem) {
+    productitem.product=this.selected;
+    console.log(productitem);
+    this.productItemService.create(productitem).subscribe(
+      (newProductitem) => {
+        console.log(
+          'ProductItemList.addProductItem(): product item created successfully'
+        );
+        this.reloadProductItems();
+        this.newProductItem = new Productitem();
+        this.selected = null;
+      },
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
+
+  reloadProductItems(): void {
+    this.productService.index().subscribe(
+      (products) => {
+        this.products = products;
+      },
+      (error) => {
+        console.error('Error retrieving products');
+        console.error(error);
+      }
+    );
+  }
+
+  reloadCategories(): void {
+    this.productService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories;
+        this.newProduct.category = categories[0];
+      },
+      (error) => {
+        console.error('Error retrieving categories');
+        console.error(error);
+      }
+    );
+  }
 }
+
 
 //   selected: Product | null = null;
 //   newProduct: Product = new Product();
@@ -169,19 +221,7 @@ export class UserpageComponent implements OnInit {
 //     );
 //   }
 
-//   addProductItem(productItem: Productitem) {}
-//   //   this.productService.create(productItem).subscribe(
-//   //     (newProduct) => {
-//   //       console.log('ProductList.addProduct(): product created successfully');
-//   //       this.reloadProducts();
-//   //       this.newProduct = new Product();
-//   //     },
-//   //     (err) => {
-//   //       console.error('ProductItemList.addProductItem(): Error creating Product item');
-//   //       console.error(err);
-//   //     }
-//   //   );
-//   // }
+
 
 //   // displayProductItem(productItem: Productitem): void {
 //   //   this.selected = productItem;

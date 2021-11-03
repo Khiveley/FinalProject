@@ -32,22 +32,22 @@ public class ProductItemController {
 	@Autowired
 	private UserService userSvc;
 
-	@GetMapping("productItem/{id}")
+	@GetMapping("productitems/{id}")
 	public ProductItem getProductItemById(@PathVariable Integer id) {
 		return prodItemSvc.getProductItemById(id);
 	}
 
-	@GetMapping("productItem")
+	@GetMapping("productitems")
 	public List<ProductItem> getAllProductItems() {
 		return prodItemSvc.getAll();
 	}
 	
-	@GetMapping("productItem/available")
+	@GetMapping("productitems/available")
 	public List<ProductItem> getAllProductItemsAvailable() {
 		return prodItemSvc.getAllAvailableProductItems();
 	}
 
-	@PostMapping("productItem")
+	@PostMapping("productitems")
 	public ProductItem createProductItem(Principal principal, @RequestBody ProductItem productItem) {
 		String username = principal.getName();
 		User user=userSvc.getUserByName(username);
@@ -55,7 +55,7 @@ public class ProductItemController {
 		return prodItemSvc.createProductItem(productItem);
 	}
 
-	@PutMapping("productItem/{id}")
+	@PutMapping("productitems/{id}")
 	public ProductItem update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody ProductItem productItem,
 			Principal principal) {
 		try {

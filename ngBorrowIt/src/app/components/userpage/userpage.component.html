@@ -1,3 +1,4 @@
+<div *ngIf= "!selected">
 <div>
   <div class="background-image">
     <div class="header">
@@ -36,16 +37,7 @@
     <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button>
     </div>
 
-    <div *ngIf = "selected">
-      <h2>{{selected.title}}</h2>
-      <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
-      <input type="text" name="version" placeholder="Version" [(ngModel)]="newProductItem.version"/><br>
 
-      <label for="available">Available</label>
-      <input type="checkbox" name="available" [(ngModel)]="newProductItem.version"/>
-      <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
-      <button (click)="displayTable()">Back to Products</button>
-    </div>
     <hr>
 
     <h4>
@@ -156,8 +148,30 @@
     </table>
   </div>
 
+  <h5>Want others to borrow an unlisted item you have? Add it here:</h5>
+  <div class="addProduct">
+  <input type="text" name="image" placeholder="Image" [(ngModel)]="newProduct.imageUrl"/>
+  <input type="text" name="title" placeholder="Title" [(ngModel)]="newProduct.title"/>
+  <input type="text" name="description" placeholder="Description" [(ngModel)]="newProduct.description"/>
+  <select name="category" [(ngModel)]="newProduct.category.id">
+    <option *ngFor="let category of categories" value="{{category.id}}">{{category.category}}</option>
+  </select>
 
+  <button (click)="addProduct(newProduct)">Add Product</button>
+  </div>
+<br>
+</div>
+</div>
+<div *ngIf = "selected">
+  <h2>{{selected.title}}</h2>
+  <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
+  <input type="text" name="version" placeholder="Version" [(ngModel)]="newProductItem.version"/><br>
 
+  <label for="available">Available</label>
+  <input type="checkbox" name="available" [(ngModel)]="newProductItem.available"/>
+  <button (click)="addProductItem(newProductItem)">Add Product Item</button>
+  <button (click)="displayTable()">Back to Products</button>
+</div>
 
 
 
