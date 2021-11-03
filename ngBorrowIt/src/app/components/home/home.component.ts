@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   products: Product[] = [];
 
-
   selected: Product | null = null;
   selectedProductItem: Productitem | null = null;
   newProduct: Product = new Product();
@@ -153,7 +152,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
   reloadProductItems(): void {
     this.productItemService.index().subscribe(
       (productItems) => {
@@ -164,12 +162,11 @@ export class HomeComponent implements OnInit {
         console.error(error);
       }
     );
-}
+  }
 
-
-displayProductItems(Productitem: Productitem): void {
-  this.selectedProductItem = Productitem;
-}
+  displayProductItems(Productitem: Productitem): void {
+    this.selectedProductItem = Productitem;
+  }
 
   // displayProductItems(Productitem: Productitem): void {
   //   this.selected = Productitem;
@@ -189,15 +186,15 @@ displayProductItems(Productitem: Productitem): void {
   //   );
   // }
 
-toBorrow(productitem: Productitem) {
-  this.borrowService.create(productitem).subscribe(
-    (borrow) => {
-      this.router.navigateByUrl('/confirmation/' + borrow.id);
-    },
-    (err) => {
-      console.error('ProductList.addProduct(): Error creating Product');
-      console.error(err);
-    }
-  );
-}
+  toBorrow(productitem: Productitem) {
+    this.borrowService.create(productitem).subscribe(
+      (borrow) => {
+        this.router.navigateByUrl('/confirmation/' + borrow.id);
+      },
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
 }

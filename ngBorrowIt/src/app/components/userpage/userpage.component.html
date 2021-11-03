@@ -10,21 +10,28 @@
     <br>
   </div>
 
-  <div class="table">
-    <h3>Username</h3>
+    <div *ngIf='selectedUser'>
+      <p>Username: {{selectedUser.username}}</p>
+      <p>Email: {{selectedUser.email}}</p>
+      <p>State: {{selectedUser.address.state}}</p>
+      <p>City: {{selectedUser.address.city}}</p>
+      <p>Zip: {{selectedUser.address.zip}}</p>
+      <button (click)="setEditUser()">Edit</button>
+    </div>
 
-    <h5>
-      Edit User Information
-    </h5>
-    <p>Username:</p>
-    <p>Email:</p>
-    <p>Password:</p>
-    <p>State:</p>
-    <p>City:</p>
-    <p>Zip:</p>
 
+    <div *ngIf="selectedUser">
+    <input type="text" name="task" [(ngModel)]="editUser"> <br>
+    <p>Username:  <input type="text" name="username" [(ngModel)]="editUser"></p>
+      <p>Email:  <input type="text" name="email" [(ngModel)]="editUser"> <br></p>
+      <p>Password:  <input type="text" name="password" [(ngModel)]="editUser"> <br></p>
+      <p>State:  <input type="text" name="state" [(ngModel)]="editUser"> <br></p>
+      <p>City:  <input type="text" name="city" [(ngModel)]="editUser"> <br></p>
+      <p>Zip:  <input type="text" name="zip" [(ngModel)]="editUser"> <br></p>
+      <!-- <button (click)='displayUser(user)'>Back</button> -->
+      <button (click)="updateUser()">Save</button>
   </div>
-
+<!-- add item if it does not exist -->
   <hr>
   <h4>If an item does not exist, it may be added here:</h4>
 
@@ -47,7 +54,7 @@
       <button (click)="displayTable()">Back to Products</button>
     </div>
     <hr>
-
+<!-- my items -->
     <h4>
       My Items
     </h4>
@@ -64,40 +71,37 @@
       </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let product of products">
+        <tr *ngFor="let product of products">
           <td (click)= "displayProduct(product)">{{product.id}}</td>
           <td (click)= "displayProduct(product)"><img class = "productimages" src="{{product.imageUrl}}"/></td>
           <td (click)= "displayProduct(product)">{{product.title}}</td>
           <td (click)= "displayProduct(product)">{{product.description}}</td>
           <td (click)= "displayProduct(product)">{{product.category}}</td>
-          <td><button (click)="deleteProduct(product.id)">X</button></td> -->
-        <!-- </tr> -->
+          <td><button (click)="deleteProduct(product.id)">X</button></td>
+        </tr>
       </tbody>
     </table>
 
+    <!-- currently borrowed-->
     <h4>
       Currently Borrowed
     </h4>
     <table class="table table-striped table-hover">
       <thead class="table-dark">
-        <tr>
         <th>Id</th>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Category</th>
-        <th>Rating</th>
-      </tr>
-      </thead>
-      <tbody>
-        <!-- <tr *ngFor="let product of products">
-          <td (click)= "displayProduct(product)">{{product.id}}</td>
-          <td (click)= "displayProduct(product)"><img class = "productimages" src="{{product.imageUrl}}"/></td>
-          <td (click)= "displayProduct(product)">{{product.title}}</td>
-          <td (click)= "displayProduct(product)">{{product.description}}</td>
-          <td (click)= "displayProduct(product)">{{product.category}}</td>
-          <td><button (click)="deleteProduct(product.id)">X</button></td> -->
-        <!-- </tr> -->
+            <th>Quality</th>
+            <th>Version</th>
+            <th>Location</th>
+            <th>Borrow</th>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let productItem of selected.productItems">
+            <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}},{{productItem.user.address.state}}</td> -->
+          <td><button >X</button></td>
+       <!-- </tr> -->
       </tbody>
     </table>
 
@@ -130,30 +134,55 @@
 
 
 
-  <h4>Available To Borrow:</h4>
-<div class="table">
-  <div id='productDetails' *ngIf="!selected && !editProduct">
-    <table *ngIf= "!selected" class = "table table-striped table-hover">
-      <thead class="table-dark">
-        <tr>
-          <th>Id</th>
-          <th>Image</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th></th>
-        </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let product of products">
-          <td (click)= "displayProduct(product)">{{product.id}}</td>
-          <td (click)= "displayProduct(product)"><img class = "productimages" src="{{product.imageUrl}}"/></td>
-          <td (click)= "displayProduct(product)">{{product.title}}</td>
-          <td (click)= "displayProduct(product)">{{product.description}}</td>
-          <td (click)= "displayProduct(product)">{{product.category.category}}</td>
+  <<div class="table">
+    <div id='productDetails' *ngIf="!selected && !editProduct">
+      <table *ngIf= "!selected" class = "table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th></th>
           </tr>
-          </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products">
+            <td (click)= "displayProduct(product)">{{product.id}}</td>
+            <td (click)= "displayProduct(product)"><img class = "productimages" src="{{product.imageUrl}}"/></td>
+            <td (click)= "displayProduct(product)">{{product.title}}</td>
+            <td (click)= "displayProduct(product)">{{product.description}}</td>
+            <td (click)= "displayProduct(product)">{{product.category.category}}</td>
+            </tr>
+            </tbody>
+      </table>
+    </div>
+
+
+  <div class="second-table">
+    <div id='productItemDetails' *ngIf="selected && !editProductItem">
+      <table class = "table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Id</th>
+            <th>Quality</th>
+            <th>Version</th>
+            <th>Location</th>
+            <th>Borrow</th>
+          </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productItem of selected.productItems" routerLink="/confirmation">
+            <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}},{{productItem.user.address.state}}</td>
+            <button class= "btn btn-success"(click)="(toBorrow(productItem))">Borrow</button>
+          </tr>
+            </tbody>
+      </table>
+
   </div>
 
 
