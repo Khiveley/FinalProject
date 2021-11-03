@@ -277,6 +277,7 @@ INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`,
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (10, 'New', 10, 1, 'Paperback', true);
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (11, 'Used', 11, 3, 'DVD', true);
 INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (12, 'Used', 12, 2, 'Classic', true);
+INSERT INTO `product_item` (`id`, `quality`, `product_id`, `user_id`, `version`, `available`) VALUES (13, 'Used', 1, 2, 'Classic', true);
 
 COMMIT;
 
