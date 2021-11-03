@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="rating")
 public class Rating {
@@ -36,12 +38,14 @@ public class Rating {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+	@JsonIgnoreProperties({"ratings"})
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	@MapsId(value="productId")
 	private Product product;
 
+	@JsonIgnoreProperties({"ratings"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")

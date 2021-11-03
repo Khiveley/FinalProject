@@ -1,13 +1,14 @@
 import { leadingComment } from "@angular/compiler";
 import { NumberValueAccessor } from "@angular/forms";
+import { Productitem } from "./productitem";
 import { User } from "./user";
 
 export class Borrow {
   id: number;
   borrowDate: Date;
   returnDate: Date;
-  productId: number;
-  borrowerId: number;
+  productItem: Productitem;
+  borrower: User;
   borrowerRating: number;
   lenderRating: number;
   borrowerRatingComment: string;
@@ -18,8 +19,8 @@ export class Borrow {
     id: number = 0,
     borrowDate: Date,
     returnDate: Date,
-    productId: number = 0,
-    borrowerId: number = 0,
+    productItem: Productitem = new Productitem(),
+    borrower: User = new User(),
     borrowerRating: number = 0,
     lenderRating: number = 0,
     borrowerRatingComment: string = '',
@@ -29,8 +30,8 @@ export class Borrow {
       this.id = id
       this.borrowDate = borrowDate;
       this.returnDate = returnDate;
-      this.productId = productId;
-      this.borrowerId = borrowerId;
+      this.productItem = productItem;
+      this.borrower = borrower;
       this.borrowerRating = borrowerRating;
       this.lenderRating = lenderRating;
       this.borrowerRatingComment = borrowerRatingComment;

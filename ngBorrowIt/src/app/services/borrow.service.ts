@@ -33,9 +33,9 @@ export class BorrowService {
     );
   }
 
-  show(todoId: number): Observable<Borrow> {
+  show(borrowId: number): Observable<Borrow> {
     return this.http
-      .get<Borrow>(this.url + '/' + Borrow, this.getHttpOptions())
+      .get<Borrow>(this.url + '/' + borrowId, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

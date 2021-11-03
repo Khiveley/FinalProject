@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Borrow {
 	
@@ -25,21 +27,37 @@ public class Borrow {
 	@Column(name="return_date")
 	private LocalDateTime returnDate;
 	
-	@Column(name="product_item_id")
-	private int productItem;
+	@JsonIgnoreProperties({"borrows"})
+	@ManyToOne
+	@JoinColumn(name="product_item_id")
+	private ProductItem productItem;
 	
-	@Column(name="borrower_id")
-	private int borrowerId;
+	public User getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
+
+	@JsonIgnoreProperties({"borrows"})
+	@ManyToOne
+	@JoinColumn(name="borrower_id")
+	private User borrower;
 	
 	@Column(name="borrower_rating")
 	private int borrowerRating;
+	
 	@Column(name="borrower_rating_comments")
 	private String borrowerRatingComment;
+	
 	@Column(name="lender_rating")
 	private int lenderRating;
+	
 	@Column(name="lender_rating_comments")
 	private String lenderRatingComment;
 	
+	@JsonIgnoreProperties({"borrows"})
 	@ManyToOne
 	@JoinColumn(name="lender_id")
 	private User user;
@@ -76,24 +94,6 @@ public class Borrow {
 	public void setReturnDate(LocalDateTime returnDate) {
 		this.returnDate = returnDate;
 	}
-	
-	
-	public int getProductItem() {
-		return productItem;
-	}
-	
-	public void setProductItem(int productItem) {
-		this.productItem = productItem;
-	}
-	
-	public int getBorrowerId() {
-		return borrowerId;
-	}
-	
-	public void setBorrowerId(int borrowerId) {
-		this.borrowerId = borrowerId;
-	}
-	
 	
 	public int getBorrowerRating() {
 		return borrowerRating;
@@ -162,8 +162,6 @@ public class Borrow {
 		this.id = id;
 		this.borrowDate = borrowDate;
 		this.returnDate = returnDate;
-		this.productItem = productItem;
-		this.borrowerId = borrowerId;
 		this.borrowerRating = borrowerRating;
 		this.borrowerRatingComment = borrowerRatingComment;
 		this.lenderRating = lenderRating;
@@ -171,30 +169,19 @@ public class Borrow {
 		this.user = user;
 	}
 
+	public ProductItem getProductItem() {
+		return productItem;
+	}
+
+	public void setProductItem(ProductItem productItem) {
+		this.productItem = productItem;
+	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Borrow [id=");
-		builder.append(id);
-		builder.append(", borrowDate=");
-		builder.append(borrowDate);
-		builder.append(", returnDate=");
-		builder.append(returnDate);
-		builder.append(", productItem=");
-		builder.append(productItem);
-		builder.append(", borrowerId=");
-		builder.append(borrowerId);
-		builder.append(", borrowerRating=");
-		builder.append(borrowerRating);
-		builder.append(", borrowerRatingComment=");
-		builder.append(borrowerRatingComment);
-		builder.append(", lenderRating=");
-		builder.append(lenderRating);
-		builder.append(", lenderRatingComment=");
-		builder.append(lenderRatingComment);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append("]");
-		return builder.toString();
+		return "Borrow [id=" + id + ", borrowDate=" + borrowDate + ", returnDate=" + returnDate + ", productItem="
+				+ productItem + ", borrower=" + borrower + ", borrowerRating=" + borrowerRating
+				+ ", borrowerRatingComment=" + borrowerRatingComment + ", lenderRating=" + lenderRating
+				+ ", lenderRatingComment=" + lenderRatingComment + ", user=" + user + "]";
 	}
 }
