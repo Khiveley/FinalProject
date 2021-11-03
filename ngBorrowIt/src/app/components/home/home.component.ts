@@ -17,11 +17,13 @@ export class HomeComponent implements OnInit {
   title = 'BorrowIt';
 
   products: Product[] = [];
-  productItems: Productitem[] = [];
+
 
   selected: Product | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
+  editProductItem: Product | undefined;
+  productItems: Productitem[] | null = [];
   newProductItem: Productitem = new Productitem();
 
   constructor(
@@ -127,6 +129,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  setEditProductItem(): void {
+    this.editProductItem = Object.assign({}, this.selected);
+  }
+
   addProductItem(productitem: Productitem) {
     this.productItemService.create(productitem).subscribe(
       (newProductitem) => {
@@ -143,6 +149,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
   reloadProductItems(): void {
     this.productItemService.index().subscribe(
       (productItems) => {
@@ -153,6 +160,15 @@ export class HomeComponent implements OnInit {
         console.error(error);
       }
     );
+
+}
+
+
+displayProductItems(Productitem: Productitem): void {
+  this.selected = Productitem;
+}
+
+
   }
   // displayProductItems(Productitem: Productitem): void {
   //   this.selected = Productitem;
@@ -171,4 +187,5 @@ export class HomeComponent implements OnInit {
   //     }
   //   );
   // }
+
 }
