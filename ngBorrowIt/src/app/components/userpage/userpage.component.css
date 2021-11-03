@@ -1,0 +1,44 @@
+.productimages {
+  width: 100px;
+
+}
+
+.background-image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('https://wallpapercave.com/wp/Raw5xBC.jpg');
+  background-size: 100%;
+  background-position: center;
+}
+
+.header{
+  text-align: center;
+  color: white;
+  font-size: 1000px;
+}
+
+#header {
+  z-index: 1;
+  position: fixed;
+  width: 97.5%;
+  margin-top: -20px;
+  height: 60px;
+  background-color: #668284;
+  margin-bottom: 10px;
+}
+
+.second-header{
+  text-align: center;
+  color: white;
+  font-size: 1000px;
+}
+
+.third-header{
+  text-align: center;
+  color: white;
+  font-size: 1000px;
+}
+
+.table {
+  text-align: center;
+  color: black;
+}
