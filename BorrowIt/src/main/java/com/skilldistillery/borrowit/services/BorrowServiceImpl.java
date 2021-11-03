@@ -57,8 +57,8 @@ public class BorrowServiceImpl implements BorrowService {
 	public Borrow create(ProductItem productItem, String username) {
 		Borrow borrow = new Borrow();
 		borrow.setId(0);
-		borrow.setProductItem(productItem.getId());
-		borrow.setBorrowerId(userRepo.findByUsername(username).getId());
+		borrow.setProductItem(productItem);
+		borrow.setBorrower(userRepo.findByUsername(username));
 		borrow.setUser(productItem.getUser());
 		return borrowRepo.saveAndFlush(borrow);
 	}

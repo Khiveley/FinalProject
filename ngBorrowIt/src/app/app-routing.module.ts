@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'search', component: SearchpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'confirmation', component: ConfirmationComponent},
+  { path: 'confirmation/:id', component: ConfirmationComponent},
   { path: '**', component: NotfoundComponent },
 ];
 
