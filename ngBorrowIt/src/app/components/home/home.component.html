@@ -48,7 +48,7 @@
         </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let productItem of selected.productItems" routerLink="/confirmation">
+          <tr *ngFor="let productItem of selected.productItems">
           <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
           <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
           <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>

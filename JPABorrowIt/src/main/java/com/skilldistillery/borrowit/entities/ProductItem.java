@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="product_item")
 public class ProductItem {
@@ -19,8 +21,10 @@ public class ProductItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	private String quality;
 	
+	@JsonIgnoreProperties({"productItems"})
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	private Product product;
@@ -30,6 +34,7 @@ public class ProductItem {
 	private User user;
 	
 	private String version;
+	
 	private Boolean available;
 	
 // Getters and Setters

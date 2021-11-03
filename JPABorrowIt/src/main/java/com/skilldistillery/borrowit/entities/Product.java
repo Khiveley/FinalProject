@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -28,6 +29,7 @@ public class Product {
 	private List<ProductItem> productItems;
 	
 	private String title;
+	
 	private String description;
 	
 	@Column(name = "image_url")
@@ -37,7 +39,7 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	@JsonIgnoreProperties({"product"})
+	@JsonIgnore
 	@OneToMany(mappedBy="product")
 	private List<Rating> ratings;
 	

@@ -188,7 +188,9 @@ export class HomeComponent implements OnInit {
 
   toBorrow(productitem: Productitem) {
     this.borrowService.create(productitem).subscribe(
-      () => {},
+      (borrow) => {
+        this.router.navigateByUrl('/confirmation/' + borrow.id);
+      },
       (err) => {
         console.error('ProductList.addProduct(): Error creating Product');
         console.error(err);
