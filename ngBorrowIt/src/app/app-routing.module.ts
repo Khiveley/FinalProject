@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'search', component: SearchpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'confirmation', component: ConfirmationComponent},
   { path: '**', component: NotfoundComponent },
 ];
 
