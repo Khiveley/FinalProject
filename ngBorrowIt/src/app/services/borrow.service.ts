@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Borrow } from '../models/borrow';
+import { Productitem } from '../models/productitem';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -42,8 +43,8 @@ export class BorrowService {
         })
       );
   }
-  create(borrow: Borrow): Observable<Borrow> {
-    return this.http.post<Borrow>(this.url, borrow, this.getHttpOptions()).pipe(
+  create(productitem: Productitem): Observable<Borrow> {
+    return this.http.post<Borrow>(this.url, productitem, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('BorrowService.create(): Error creating borrow');

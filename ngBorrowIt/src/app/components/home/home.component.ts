@@ -7,6 +7,8 @@ import { Productitem } from 'src/app/models/productitem';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductItemService } from 'src/app/services/product-item.service';
 import { Router } from '@angular/router';
+import { normalizeGenFileSuffix } from '@angular/compiler/src/aot/util';
+import { BorrowService } from 'src/app/services/borrow.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
 
   selected: Product | null = null;
+  selectedProductItem: Productitem | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
   editProductItem: Product | undefined;
@@ -29,7 +32,8 @@ export class HomeComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private productItemService: ProductItemService
+    private productItemService: ProductItemService,
+    private borrowService: BorrowService
   ) {}
 
   ngOnInit(): void {
@@ -160,11 +164,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // displayProductItems(Productitem: Productitem): void {
-  //   this.selected = Productitem;
-  // }
+  displayProductItems(Productitem: Productitem): void {
+    this.selectedProductItem = Productitem;
+  }
 
-  // }
   // displayProductItems(Productitem: Productitem): void {
   //   this.selected = Productitem;
   // }
@@ -182,4 +185,14 @@ export class HomeComponent implements OnInit {
   //     }
   //   );
   // }
+
+  toBorrow(productitem: Productitem) {
+    this.borrowService.create(productitem).subscribe(
+      () => {},
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
 }

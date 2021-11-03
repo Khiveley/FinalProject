@@ -1,10 +1,10 @@
 import { Category } from "./category";
-// import { Productitem } from "./productitem";
+import { Productitem } from "./productitem";
 import { Rating } from "./rating";
 
 export class Product {
   id: number;
-	// productItems: Productitem[];
+	productItems: Productitem[];
   title: string;
   description: string;
   imageUrl: string;
@@ -14,7 +14,7 @@ export class Product {
 
   constructor(
     id: number = 0,
-    // productItems: Productitem[] = [],
+    productItems: Productitem[] = [],
     title: string = '',
     description: string = '',
     imageUrl: string = '',
@@ -22,7 +22,7 @@ export class Product {
     ratings: Rating[] = [],
     enabled: boolean = false) {
       this.id = id;
-      // this.productItems = productItems;
+      this.productItems = productItems;
       this.title = title;
       this.description = description;
       this.imageUrl = imageUrl;

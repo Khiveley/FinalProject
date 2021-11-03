@@ -156,6 +156,21 @@ public class Borrow {
 		return id == other.id;
 	}
 
+	public Borrow(int id, LocalDateTime borrowDate, LocalDateTime returnDate, int productItem, int borrowerId,
+			int borrowerRating, String borrowerRatingComment, int lenderRating, String lenderRatingComment, User user) {
+		super();
+		this.id = id;
+		this.borrowDate = borrowDate;
+		this.returnDate = returnDate;
+		this.productItem = productItem;
+		this.borrowerId = borrowerId;
+		this.borrowerRating = borrowerRating;
+		this.borrowerRatingComment = borrowerRatingComment;
+		this.lenderRating = lenderRating;
+		this.lenderRatingComment = lenderRatingComment;
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

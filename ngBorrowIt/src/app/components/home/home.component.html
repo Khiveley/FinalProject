@@ -34,37 +34,28 @@
     </table>
   </div>
 
-<!-- <h4>If an item does not exist, it may be added here:</h4> -->
-
-    <!-- <button (click)="addProduct(newProduct)">Add Product</button>
-  <input type="text" name="title" placeholder=Title [(ngModel)]="newProduct.title" />
-  <input type="text" name="image"  placeholder=ImageUrl [(ngModel)]="newProduct.imageUrl" />
-  <input type="text" name="description"  placeholder=Description [(ngModel)]="newProduct.description" />
-  <input type="text" name="category"  placeholder=Category [(ngModel)]="newProduct.category.category" />
-  <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button> -->
-  <!-- </div> -->
 
 <div class="second-table">
-  <div id='productItemDetails' *ngIf="!selected && !editProductItem">
-    <table *ngIf= "!selected" class = "table table-striped table-hover">
+  <div id='productItemDetails' *ngIf="selected && !editProductItem">
+    <table class = "table table-striped table-hover">
       <thead class="table-dark">
         <tr>
           <th>Id</th>
           <th>Quality</th>
-          <th>Image</th>
           <th>Version</th>
           <th>Location</th>
           <th>Borrow</th>
         </tr>
           </thead>
-          <!-- <tbody>
-          <tr *ngFor="let product of products">
-          <td (click)= "displayProductItems(productItems)">{{productItems.id}}</td>
-          <td (click)= "displayProductItems(product)"><img class = "productimages" src="{{product.imageUrl}}"/></td>
-          <td (click)= "displayProductItems(product)">{{productItemds.version}}</td>
-          <td (click)= "displayProductItems(product)">{{productItem.quality}}</td>
-          </tr>
-          </tbody> -->
+          <tbody>
+          <tr *ngFor="let productItem of selected.productItems" routerLink="/confirmation">
+          <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
+          <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
+          <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>
+          <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}}, {{productItem.user.address.state}}</td>
+          <button class= "btn btn-success"(click)="(toBorrow(productItem))">Borrow</button>
+        </tr>
+          </tbody>
     </table>
 
 </div>
@@ -76,33 +67,3 @@
 
 
 
-<!-- <div class="second-table">
-  <div *ngIf = "selected">
-    <h2>{{selected.title}}</h2>
-    <table>
-      <thead class="table-dark">
-      <tr>
-        <th>Id</th>
-        <th>Image</th>
-        <th>Quality/th>
-        <th>Version</th>
-        <th>Location</th>
-      </tr>
-      </thead>
-    <tbody>
-      <tr *ngFor="let productItem of productItems"></tr>
-      </tbody>
-    <tr *ngFor="let product of products">
-    </table>
-
-    <label for="available">Available</label>
-    <input type="checkbox" name="available" [(ngModel)]="newProductItem.version"/>
-    <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
-    <button (click)="displayTable()">Back to Products</button>
-  </div>
-</div>
-    </div> -->
-
-
-    <!-- <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
-    <input type="text" name="version" placeholder="Version" [(ngModel)]="newProductItem.version"/><br> -->

@@ -5,7 +5,7 @@ export class Productitem {
 	id: number;
 	quality: string;
   product: Product = new Product();
-  user: User | undefined;
+  user: User;
   version: string;
   available: boolean;
 
@@ -14,7 +14,7 @@ export class Productitem {
     product: Product = new Product(),
     version: string = '',
     available: boolean = false,
-    user?: User
+    user: User = new User()
     ) {
       this.id = id;
       this.quality = quality;
