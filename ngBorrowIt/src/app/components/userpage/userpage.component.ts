@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { BorrowService } from 'src/app/services/borrow.service';
 import { ProductItemService } from 'src/app/services/product-item.service';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-userpage',
@@ -28,7 +29,8 @@ export class UserpageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private borrowService: BorrowService,
-    private productItemService: ProductItemService
+    private productItemService: ProductItemService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
