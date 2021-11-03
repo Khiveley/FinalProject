@@ -171,7 +171,6 @@ displayProductItems(Productitem: Productitem): void {
   this.selectedProductItem = Productitem;
 }
 
-
   // displayProductItems(Productitem: Productitem): void {
   //   this.selected = Productitem;
   // }
