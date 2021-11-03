@@ -10,22 +10,28 @@
     <br>
   </div>
 
-  <div class="table">
-    <h3>Username</h3>
+    <div *ngIf='selectedUser'>
+      <p>Username: {{selectedUser.username}}</p>
+      <p>Email: {{selectedUser.email}}</p>
+      <p>State: {{selectedUser.address.state}}</p>
+      <p>City: {{selectedUser.address.city}}</p>
+      <p>Zip: {{selectedUser.address.zip}}</p>
+      <button (click)="setEditUser()">Edit</button>
+    </div>
 
-    <h5>
-      Edit User Information
-    </h5>
-    <p>Username:</p>
-    <p>Email:</p>
-    <p>Password:</p>
-    <p>State:</p>
-    <p>City:</p>
-    <p>Zip:</p>
-    <button (click)='displayTable()'>Back</button>
-  <button (click)="setEditUser()">Edit</button>
+
+    <div *ngIf="selectedUser">
+    <input type="text" name="task" [(ngModel)]="editUser"> <br>
+    <p>Username:  <input type="text" name="username" [(ngModel)]="editUser"></p>
+      <p>Email:  <input type="text" name="email" [(ngModel)]="editUser"> <br></p>
+      <p>Password:  <input type="text" name="password" [(ngModel)]="editUser"> <br></p>
+      <p>State:  <input type="text" name="state" [(ngModel)]="editUser"> <br></p>
+      <p>City:  <input type="text" name="city" [(ngModel)]="editUser"> <br></p>
+      <p>Zip:  <input type="text" name="zip" [(ngModel)]="editUser"> <br></p>
+      <!-- <button (click)='displayUser(user)'>Back</button> -->
+      <button (click)="updateUser()">Save</button>
   </div>
-
+<!-- add item if it does not exist -->
   <hr>
   <h4>If an item does not exist, it may be added here:</h4>
 
@@ -48,7 +54,7 @@
       <button (click)="displayTable()">Back to Products</button>
     </div>
     <hr>
-
+<!-- my items -->
     <h4>
       My Items
     </h4>
@@ -71,11 +77,12 @@
           <td (click)= "displayProduct(product)">{{product.title}}</td>
           <td (click)= "displayProduct(product)">{{product.description}}</td>
           <td (click)= "displayProduct(product)">{{product.category}}</td>
-          <td><button (click)="deleteProduct(product.id)">X</button></td> -->
+          <td><button (click)="deleteProduct(product.id)">X</button></td>
         </tr>
       </tbody>
     </table>
 
+    <!-- currently borrowed-->
     <h4>
       Currently Borrowed
     </h4>
@@ -88,13 +95,13 @@
             <th>Borrow</th>
             </thead>
             <tbody>
-            <tr *ngFor="let productItem of selected.productItems" routerLink="/confirmation">
+              <!-- <tr *ngFor="let productItem of selected.productItems">
             <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
             <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
             <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>
-            <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}},{{productItem.user.address.state}}</td>
+            <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}},{{productItem.user.address.state}}</td> -->
           <td><button >X</button></td>
-       </tr>
+       <!-- </tr> -->
       </tbody>
     </table>
 

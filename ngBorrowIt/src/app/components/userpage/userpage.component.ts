@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { Productitem } from 'src/app/models/productitem';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { BorrowService } from 'src/app/services/borrow.service';
 import { ProductItemService } from 'src/app/services/product-item.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,12 +16,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserpageComponent implements OnInit {
   products: Product[] = [];
+  user: User[] = [];
 
   selected: Product | null = null;
   selectedProductItem: Productitem | null = null;
+  selectedUser: User | null = null;
   newProduct: Product = new Product();
   editProduct: Product | null = null;
   editProductItem: Product | undefined;
+  editUser: User | undefined;
   productItems: Productitem[] | null = [];
   newProductItem: Productitem = new Productitem();
 
@@ -30,7 +34,8 @@ export class UserpageComponent implements OnInit {
     private router: Router,
     private borrowService: BorrowService,
     private productItemService: ProductItemService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +59,17 @@ export class UserpageComponent implements OnInit {
       }
     }
     this.reloadProducts();
+    this.authService.getLoginUser().subscribe(
+      (user) => {
+        this.selectedUser = user;
+      },
+      (err) => {
+        console.error(
+          'LoggedInUser(): Error showing user information at login'
+        );
+        console.error(err);
+      }
+    );
   }
 
   reloadProducts(): void {
@@ -174,4 +190,12 @@ export class UserpageComponent implements OnInit {
   displayProductItems(Productitem: Productitem): void {
     this.selectedProductItem = Productitem;
   }
+  displayUser(user: User): void {
+    this.selectedUser = user;
+  }
+
+  setEditUser(): void {
+    this.editUser = Object.assign({}, this.selectedUser);
+  }
+  updateUser() {}
 }
