@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.borrowit.entities.Borrow;
+import com.skilldistillery.borrowit.entities.ProductItem;
 import com.skilldistillery.borrowit.repositories.BorrowRepository;
+import com.skilldistillery.borrowit.repositories.UserRepository;
 
 @Service
 public class BorrowServiceImpl implements BorrowService {
 
+	@Autowired
+	private UserRepository userRepo;
+	
 	@Autowired
 	private BorrowRepository borrowRepo;
 
@@ -34,11 +39,6 @@ public class BorrowServiceImpl implements BorrowService {
 //	|`Borrow`            |`PUT api/productitems/{id}`   | Replace an existing borrow by id        |
 //	|`void`              |`DELETE api/productitems/{id}`| Delete an existing borrow by id       
 
-	@Override
-	public Borrow create(Borrow borrow) {
-		borrowRepo.save(borrow);
-		return borrow;
-	}
 
 	@Override
 	public boolean destroy(String name, int bid) {
@@ -52,5 +52,16 @@ public class BorrowServiceImpl implements BorrowService {
 
 		return borrow;
 	}
+
+	@Override
+	public Borrow create(ProductItem productItem, String username) {
+		Borrow borrow = new Borrow();
+		borrow.setId(0);
+		borrow.setProductItem(productItem.getId());
+		borrow.setBorrowerId(userRepo.findByUsername(username).getId());
+		borrow.setUser(productItem.getUser());
+		return borrowRepo.saveAndFlush(borrow);
+	}
+	
 
 }

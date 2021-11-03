@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.borrowit.entities.Borrow;
+import com.skilldistillery.borrowit.entities.ProductItem;
 import com.skilldistillery.borrowit.services.BorrowService;
 
 @RestController
@@ -48,9 +49,9 @@ public class BorrowController {
 
 	@PostMapping("borrows")
 	public Borrow create(HttpServletRequest req, HttpServletResponse res,
-			@RequestBody Borrow borrow) {
+			@RequestBody ProductItem productItem, Principal principal) {
 		
-		borrow =	borrowSvc.create(borrow);
+		Borrow borrow =	borrowSvc.create(productItem, principal.getName());
 		if( borrow == null) {
 			res.setStatus(400);
 		}
