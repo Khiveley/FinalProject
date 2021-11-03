@@ -1,10 +1,9 @@
 package com.skilldistillery.borrowit.services;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
 import com.skilldistillery.borrowit.entities.Borrow;
+import com.skilldistillery.borrowit.entities.ProductItem;
 
 public interface BorrowService {
 
@@ -18,6 +17,6 @@ public interface BorrowService {
 	Borrow update(int bid, Borrow borrow);
 
 
-	Borrow create(Borrow borrow);
+	Borrow create(ProductItem productItem, String username);
 
 }
