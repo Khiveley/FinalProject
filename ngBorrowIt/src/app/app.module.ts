@@ -21,6 +21,7 @@ import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { MustLogInComponent } from './components/must-log-in/must-log-in.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MustLogInComponent } from './components/must-log-in/must-log-in.compone
     SearchpageComponent,
     LandingPageComponent,
     MustLogInComponent,
+    ConfirmationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
