@@ -2,7 +2,7 @@
 
 # Members, Roles, Github Repositories, LinkedIn, and Email
 
-- Amanda Gonzalez 
+Amanda Gonzalez 
 - Scrum Master 
 - amandue10 https://www.linkedin.com/in/amanda-gonzalez-40a61818b/ 
 - amanda.christine.gonzalez@gmail.com
