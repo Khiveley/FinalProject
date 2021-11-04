@@ -5,18 +5,21 @@ import { catchError } from 'rxjs/operators';
 import { Product } from '../models/product';
 import { DatePipe} from '@angular/common';
 import { environment} from 'src/environments/environment';
+import { AuthService } from './auth.service';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl = 'http://localhost.8091/';
+  // private baseUrl = 'http://localhost.8091/';
   private url = environment.baseUrl + 'api/products';
 
   constructor(
     private http: HttpClient,
     private datePipe: DatePipe,
+    private authService: AuthService
   ) { }
 
   index(): Observable<Product[]>{
@@ -24,6 +27,15 @@ export class ProductService {
       catchError((err: any) => {
         console.log(err);
         return throwError('ProductService.index(): Error retrieving Product list');
+      })
+    );
+  }
+
+  getCategories(): Observable<Category[]>{
+    return this.http.get<Category[]>(environment.baseUrl + 'api/category', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('ProductService.getCategories(): Error retrieving Category list');
       })
     );
   }
@@ -39,7 +51,7 @@ export class ProductService {
 
   create(product: Product): Observable<Product> {
     console.log('adding product');
-    return this.http.post<Product>(this.url, product).pipe(
+    return this.http.post<Product>(this.url, product,this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('ProductService.create(): Error creating product');
@@ -47,7 +59,16 @@ export class ProductService {
     );
 
   }
-
+  getHttpOptions(){
+    let credentials = this.authService.getCredentials();
+    let options = {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Authorization': `Basic ${credentials}`
+      }
+    };
+    return options;
+  }
   update(product: Product) {
     return this.http.put<Product>(`${this.url}/${product.id}`, product).pipe(
       catchError((err: any)=>{
@@ -65,4 +86,5 @@ export class ProductService {
       })
     )
   }
+
 }

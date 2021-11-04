@@ -65,8 +65,6 @@
 
 
 
-
-
 <!-- <div class="second-table">
   <div *ngIf = "selected">
     <h2>{{selected.title}}</h2>
@@ -82,17 +80,16 @@
       </thead>
     <tbody>
       <tr *ngFor="let productItem of productItems"></tr>
+      <td>displa{{}}</td>
       </tbody>
     <tr *ngFor="let product of products">
     </table>
 
-    <label for="available">Available</label>
-    <input type="checkbox" name="available" [(ngModel)]="newProductItem.version"/>
-    <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
+
     <button (click)="displayTable()">Back to Products</button>
   </div>
 </div>
-    </div> -->
+    </div>
 
 
     <!-- <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
