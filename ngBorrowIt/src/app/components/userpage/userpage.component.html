@@ -9,8 +9,13 @@
       </div>
       <hr>
       <br>
-    </div>
 
+    <div class="info">
+      <h3>Username</h3>
+
+      <h5>
+        Edit User Information
+      </h5>
       <div *ngIf='selectedUser'>
         <p>Username: {{selectedUser.username}}</p>
         <p>Email: {{selectedUser.email}}</p>
@@ -34,9 +39,18 @@
     </div>
       </div>
 
+    <hr>
+    <h4>If an item does not exist, it may be added here:</h4>
+  </div>
 
+        <label for="available">Available</label>
+        <input type="checkbox" name="available" [(ngModel)]="newProductItem.version"/>
+        <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
+        <button (click)="displayTable()">Back to Products</button>
+      </div>
 
-  <!-- my items -->
+  <div class=tables>
+
       <h4>
         My Items
       </h4>
@@ -127,10 +141,15 @@
 
     <button (click)="addProduct(newProduct)">Add Product</button>
     </div>
+
+    </div>
+    </div>
+
+
   <br>
   </div>
   </div>
-  </div>
+
   <div *ngIf = "selected">
     <h2>{{selected.title}}</h2>
     <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
@@ -141,6 +160,7 @@
     <button (click)="addProductItem(newProductItem)">Add Product Item</button>
     <button (click)="displayTable()">Back to Products</button>
   </div>
+
 
   <div id='productItemDetails' *ngIf="selected && !editProductItem">
     <table class = "table table-striped table-hover">

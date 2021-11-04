@@ -1,6 +1,5 @@
 .productimages {
   width: 100px;
-
 }
 
 .background-image{
@@ -41,4 +40,17 @@
 .table {
   text-align: center;
   color: black;
+}
+
+.info {
+  text-align: center;
+  color: white;
+}
+
+.tables {
+  color: black;
+}
+
+.input {
+  text-align: center;
 }
