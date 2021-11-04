@@ -4,7 +4,7 @@ import { User } from "./user";
 export class Productitem {
 	id: number;
 	quality: string;
-  product: Product | null = new Product();
+  product: Product = new Product();
   user: User;
   version: string;
   available: boolean;

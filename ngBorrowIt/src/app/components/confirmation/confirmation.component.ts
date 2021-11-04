@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Productitem } from 'src/app/models/productitem';
 import { User } from 'src/app/models/user';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +13,7 @@ import { Borrow } from 'src/app/models/borrow';
 export class ConfirmationComponent implements OnInit {
   title = 'BorrowIt';
 
-  borrow: Borrow | null = null;
+  borrow: Borrow = new Borrow();
   user: User = new User();
   product: Product = new Product();
 
