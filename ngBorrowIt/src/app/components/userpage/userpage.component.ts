@@ -10,7 +10,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { Category } from 'src/app/models/category';
 import { UserService } from 'src/app/services/user.service';
 
-
 @Component({
   selector: 'app-userpage',
   templateUrl: './userpage.component.html',
@@ -29,8 +28,7 @@ export class UserpageComponent implements OnInit {
   editUser: User | undefined;
   productItems: Productitem[] | null = [];
   newProductItem: Productitem = new Productitem();
-  categories: Category[] =[];
-
+  categories: Category[] = [];
 
   constructor(
     private productService: ProductService,
@@ -105,7 +103,7 @@ export class UserpageComponent implements OnInit {
         console.log('ProductList.addProduct(): product created successfully');
         this.reloadProducts();
         this.newProduct = new Product();
-        this.newProduct.category=this.categories[0];
+        this.newProduct.category = this.categories[0];
       },
       (err) => {
         console.error('ProductList.addProduct(): Error creating Product');
@@ -154,23 +152,23 @@ export class UserpageComponent implements OnInit {
   }
 
   addProductItem(productitem: Productitem) {
-    if (this.selected){
-    productitem.product= this.selected;
-    console.log(productitem);
-    this.productItemService.create(productitem).subscribe(
-      (newProductitem) => {
-        console.log(
-          'ProductItemList.addProductItem(): product item created successfully'
-        );
-        this.reloadProductItems();
-        this.newProductItem = new Productitem();
-        this.selected = null;
-      },
-      (err) => {
-        console.error('ProductList.addProduct(): Error creating Product');
-        console.error(err);
-      }
-    );
+    if (this.selected) {
+      productitem.product = this.selected;
+      console.log(productitem);
+      this.productItemService.create(productitem).subscribe(
+        (newProductitem) => {
+          console.log(
+            'ProductItemList.addProductItem(): product item created successfully'
+          );
+          this.reloadProductItems();
+          this.newProductItem = new Productitem();
+          this.selected = null;
+        },
+        (err) => {
+          console.error('ProductList.addProduct(): Error creating Product');
+          console.error(err);
+        }
+      );
     }
   }
 
