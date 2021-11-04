@@ -8,9 +8,8 @@
     </div>
     <hr>
     <br>
-  </div>
 
-  <div class="table">
+  <div class="info">
     <h3>Username</h3>
 
     <h5>
@@ -23,18 +22,18 @@
     <p>City:</p>
     <p>Zip:</p>
 
-  </div>
-
   <hr>
   <h4>If an item does not exist, it may be added here:</h4>
+</div>
 
+<div class="input">
   <input type="text" name="title" placeholder=Title [(ngModel)]="newProduct.title" />
   <input type="text" name="image"  placeholder=ImageUrl [(ngModel)]="newProduct.imageUrl" />
   <input type="text" name="description"  placeholder=Description [(ngModel)]="newProduct.description" />
   <input type="text" name="category"  placeholder=Category [(ngModel)]="newProduct.category.category" />
   <button (click)="addProduct(newProduct)">Add Product</button>
     <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button>
-    </div>
+  </div>
 
     <div *ngIf = "selected">
       <h2>{{selected.title}}</h2>
@@ -46,8 +45,8 @@
       <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
       <button (click)="displayTable()">Back to Products</button>
     </div>
-    <hr>
 
+<div class=tables>
     <h4>
       My Items
     </h4>
@@ -155,6 +154,9 @@
           </tbody>
     </table>
   </div>
+  </div>
+  </div>
+
 
 
 
