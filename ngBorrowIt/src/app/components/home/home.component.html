@@ -52,7 +52,7 @@
           <td (click)= "displayProductItems(productItem)">{{productItem.id}}</td>
           <td (click)= "displayProductItems(productItem)">{{productItem.quality}}</td>
           <td (click)= "displayProductItems(productItem)">{{productItem.version}}</td>
-          <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}}, {{productItem.user.address.state}}</td>
+          <td (click)= "displayProductItems(productItem)">{{productItem.user.address.city}},{{productItem.user.address.state}}</td>
           <button class= "btn btn-success"(click)="(toBorrow(productItem))">Borrow</button>
         </tr>
           </tbody>

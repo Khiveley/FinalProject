@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
@@ -41,6 +41,26 @@ export class AuthService {
         localStorage.setItem('credentials', credentials);
         return res;
       }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('AuthService.login(): Error logging in.');
+      })
+    );
+  }
+
+  getLoginUser(): Observable<User> {
+    // Make credentials
+    const credentials = this.getCredentials();
+    // Send credentials as Authorization header (this is spring security convention for basic auth)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
+    };
+
+    // create request to authenticate credentials
+    return this.http.get<User>(this.baseUrl + 'authenticate', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('AuthService.login(): Error logging in.');
