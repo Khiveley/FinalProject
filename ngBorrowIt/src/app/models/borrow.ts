@@ -1,13 +1,13 @@
-import { leadingComment } from "@angular/compiler";
-import { NumberValueAccessor } from "@angular/forms";
-import { Productitem } from "./productitem";
-import { User } from "./user";
+import { leadingComment } from '@angular/compiler';
+import { NumberValueAccessor } from '@angular/forms';
+import { Productitem } from './productitem';
+import { User } from './user';
 
 export class Borrow {
   id: number;
-  borrowDate: Date;
-  returnDate: Date;
-  productItem: Productitem;
+  borrowDate: string;
+  returnDate: string;
+  productItem:  Productitem;
   borrower: User;
   borrowerRating: number;
   lenderRating: number;
@@ -17,8 +17,8 @@ export class Borrow {
 
   constructor(
     id: number = 0,
-    borrowDate: Date,
-    returnDate: Date,
+    borrowDate: string = '',
+    returnDate: string = '',
     productItem: Productitem = new Productitem(),
     borrower: User = new User(),
     borrowerRating: number = 0,
@@ -26,16 +26,16 @@ export class Borrow {
     borrowerRatingComment: string = '',
     lenderRatingComment: string = '',
     user: User = new User()
-    ) {
-      this.id = id
-      this.borrowDate = borrowDate;
-      this.returnDate = returnDate;
-      this.productItem = productItem;
-      this.borrower = borrower;
-      this.borrowerRating = borrowerRating;
-      this.lenderRating = lenderRating;
-      this.borrowerRatingComment = borrowerRatingComment;
-      this.lenderRatingComment = lenderRatingComment;
-      this.user = user;
-    }
+  ) {
+    this.id = id;
+    this.borrowDate = borrowDate;
+    this.returnDate = returnDate;
+    this.productItem = productItem;
+    this.borrower = borrower;
+    this.borrowerRating = borrowerRating;
+    this.lenderRating = lenderRating;
+    this.borrowerRatingComment = borrowerRatingComment;
+    this.lenderRatingComment = lenderRatingComment;
+    this.user = user;
+  }
 }

@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 import { Productitem } from '../models/productitem';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class ProductItemService {
   private baseUrl = 'http://localhost.8091/';
   private url = environment.baseUrl + 'api/productitems';
 
-  constructor(private http: HttpClient, private datePipe: DatePipe) {}
+  constructor(private http: HttpClient,
+    private datePipe: DatePipe,
+    private authService: AuthService
+    ) {}
 
   index(): Observable<Productitem[]> {
     return this.http.get<Productitem[]>(this.url).pipe(
@@ -40,7 +44,7 @@ export class ProductItemService {
 
   create(productItem: Productitem): Observable<Productitem> {
     console.log('adding product item');
-    return this.http.post<Productitem>(this.url, productItem).pipe(
+    return this.http.post<Productitem>(this.url, productItem, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -72,5 +76,15 @@ export class ProductItemService {
         );
       })
     );
+  }
+  getHttpOptions(){
+    let credentials = this.authService.getCredentials();
+    let options = {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Authorization': `Basic ${credentials}`
+      }
+    };
+    return options;
   }
 }

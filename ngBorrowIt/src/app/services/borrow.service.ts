@@ -43,7 +43,7 @@ export class BorrowService {
         })
       );
   }
-  create(productitem: Productitem): Observable<Borrow> {
+  create(productitem: Productitem | null): Observable<Borrow> {
     return this.http.post<Borrow>(this.url, productitem, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);

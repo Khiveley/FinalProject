@@ -1,7 +1,20 @@
+<div class="background-image">
 <div class="header">
 <h1>Congratulations!</h1>
 </div>
+<br>
+<br>
 
 <div class="second-header" *ngIf="borrow">
-<h2>You have borrowed {{borrow.productItem.product.title}} for 7 Days. Contact {{borrow.productItem.user.email}} to coordinate pickup!</h2>
+<h2>You have borrowed {{borrow.productItem.product.title}} for 7 Days.
+  <br>
+  Contact {{borrow.productItem.user.email}} to coordinate pickup!</h2>
 </div>
+
+<br><br><br>
+<div class="button">
+  <button routerLink='/user'>Back to Profile Page</button>
+</div>
+
+</div>
+
