@@ -17,7 +17,7 @@ export class User {
     password: string = '',
     enabled: boolean = true,
     role: string = '',
-    address: Address = new Address()
+    address: Address =  new Address()
   ) {
     this.id = id;
     this.email = email;

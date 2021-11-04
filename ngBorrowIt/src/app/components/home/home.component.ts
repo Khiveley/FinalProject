@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { subscribeOn } from 'rxjs/operators';
-import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { Productitem } from 'src/app/models/productitem';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductItemService } from 'src/app/services/product-item.service';
 import { Router } from '@angular/router';
-import { normalizeGenFileSuffix } from '@angular/compiler/src/aot/util';
 import { BorrowService } from 'src/app/services/borrow.service';
 
 @Component({

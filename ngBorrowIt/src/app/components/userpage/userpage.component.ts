@@ -7,7 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { BorrowService } from 'src/app/services/borrow.service';
 import { ProductItemService } from 'src/app/services/product-item.service';
 import { ProductService } from 'src/app/services/product.service';
+import { Category } from 'src/app/models/category';
 import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-userpage',
@@ -27,6 +29,8 @@ export class UserpageComponent implements OnInit {
   editUser: User | undefined;
   productItems: Productitem[] | null = [];
   newProductItem: Productitem = new Productitem();
+  categories: Category[] =[];
+
 
   constructor(
     private productService: ProductService,
@@ -59,6 +63,8 @@ export class UserpageComponent implements OnInit {
       }
     }
     this.reloadProducts();
+    this.reloadCategories();
+
     this.authService.getLoginUser().subscribe(
       (user) => {
         this.selectedUser = user;
@@ -93,11 +99,13 @@ export class UserpageComponent implements OnInit {
   }
 
   addProduct(product: Product) {
+    console.log(product);
     this.productService.create(product).subscribe(
       (newProduct) => {
         console.log('ProductList.addProduct(): product created successfully');
         this.reloadProducts();
         this.newProduct = new Product();
+        this.newProduct.category=this.categories[0];
       },
       (err) => {
         console.error('ProductList.addProduct(): Error creating Product');
@@ -145,21 +153,10 @@ export class UserpageComponent implements OnInit {
     );
   }
 
-  toBorrow(productitem: Productitem) {
-    this.borrowService.create(productitem).subscribe(
-      () => {},
-      (err) => {
-        console.error('ProductList.addProduct(): Error creating Product');
-        console.error(err);
-      }
-    );
-  }
-
-  setEditProductItem(): void {
-    this.editProductItem = Object.assign({}, this.selected);
-  }
-
   addProductItem(productitem: Productitem) {
+    if (this.selected){
+    productitem.product= this.selected;
+    console.log(productitem);
     this.productItemService.create(productitem).subscribe(
       (newProductitem) => {
         console.log(
@@ -167,12 +164,14 @@ export class UserpageComponent implements OnInit {
         );
         this.reloadProductItems();
         this.newProductItem = new Productitem();
+        this.selected = null;
       },
       (err) => {
         console.error('ProductList.addProduct(): Error creating Product');
         console.error(err);
       }
     );
+    }
   }
 
   reloadProductItems(): void {
@@ -185,6 +184,32 @@ export class UserpageComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+  reloadCategories(): void {
+    this.productService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories;
+        this.newProduct.category = categories[0];
+      },
+      (error) => {
+        console.error('Error retrieving categories');
+        console.error(error);
+      }
+    );
+  }
+
+  toBorrow(productitem: Productitem) {
+    this.borrowService.create(productitem).subscribe(
+      () => {},
+      (err) => {
+        console.error('ProductList.addProduct(): Error creating Product');
+        console.error(err);
+      }
+    );
+  }
+
+  setEditProductItem(): void {
+    this.editProductItem = Object.assign({}, this.selected);
   }
 
   displayProductItems(Productitem: Productitem): void {

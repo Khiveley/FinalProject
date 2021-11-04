@@ -5,9 +5,9 @@ import { User } from './user';
 
 export class Borrow {
   id: number;
-  borrowDate: Date;
-  returnDate: Date;
-  productItem: Productitem;
+  borrowDate: string;
+  returnDate: string;
+  productItem:  Productitem;
   borrower: User;
   borrowerRating: number;
   lenderRating: number;
@@ -17,8 +17,8 @@ export class Borrow {
 
   constructor(
     id: number = 0,
-    borrowDate: Date,
-    returnDate: Date,
+    borrowDate: string = '',
+    returnDate: string = '',
     productItem: Productitem = new Productitem(),
     borrower: User = new User(),
     borrowerRating: number = 0,
