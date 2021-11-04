@@ -20,7 +20,7 @@
     </div>
 
 
-    <div *ngIf="selectedUser">
+    <!-- <div *ngIf="selectedUser">
     <input type="text" name="task" [(ngModel)]="editUser"> <br>
     <p>Username:  <input type="text" name="username" [(ngModel)]="editUser"></p>
       <p>Email:  <input type="text" name="email" [(ngModel)]="editUser"> <br></p>
@@ -30,29 +30,8 @@
       <p>Zip:  <input type="text" name="zip" [(ngModel)]="editUser"> <br></p>
       <!-- <button (click)='displayUser(user)'>Back</button> -->
       <button (click)="updateUser()">Save</button>
-  </div>
+  </div> -->
 <!-- add item if it does not exist -->
-  <hr>
-  <h4>If an item does not exist, it may be added here:</h4>
-
-  <input type="text" name="title" placeholder=Title [(ngModel)]="newProduct.title" />
-  <input type="text" name="image"  placeholder=ImageUrl [(ngModel)]="newProduct.imageUrl" />
-  <input type="text" name="description"  placeholder=Description [(ngModel)]="newProduct.description" />
-  <input type="text" name="category"  placeholder=Category [(ngModel)]="newProduct.category.category" />
-  <button (click)="addProduct(newProduct)">Add Product</button>
-    <button class= "btn btn-success"(click)="setEditProduct()">Add Item</button>
-    </div>
-
-    <div *ngIf = "selected">
-      <h2>{{selected.title}}</h2>
-      <input type="text" name="quality" placeholder="Quality" [(ngModel)]="newProductItem.quality"/>
-      <input type="text" name="version" placeholder="Version" [(ngModel)]="newProductItem.version"/><br>
-
-      <label for="available">Available</label>
-      <input type="checkbox" name="available" [(ngModel)]="newProductItem.version"/>
-      <!-- <button (click)="addProductItem(newProductItem)">Add Product Item</button> -->
-      <button (click)="displayTable()">Back to Products</button>
-    </div>
     <hr>
 <!-- my items -->
     <h4>
