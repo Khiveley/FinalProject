@@ -4,24 +4,26 @@
 
 Amanda Gonzalez 
 - Scrum Master 
-- amandue10 https://www.linkedin.com/in/amanda-gonzalez-40a61818b/ 
+- amandue10 
+- https://www.linkedin.com/in/amanda-gonzalez-40a61818b/ 
 - amanda.christine.gonzalez@gmail.com
 
 Isaac Mina 
-Database Administrator 
-imina93 https://www.linkedin.com/in/isaac-mina-048b52224/ 
-isaacmina93@gmail.com
+- Database Administrator 
+- imina93 https://www.linkedin.com/in/isaac-mina-048b52224/ 
+- isaacmina93@gmail.com
 
 Jessia Armendariz
-Developer
-jessicarmendariz
-https://www.linkedin.com/in/jessica-armendariz-7517291b7/
+- Developer
+- jessicarmendariz
+- https://www.linkedin.com/in/jessica-armendariz-7517291b7/
+- jessica.n.armendariz@gmail.com
 
 Ken Hiveley 
-Repository Owner 
-Khiveley 
-https://www.linkedin.com/in/ken-hiveley/ 
-webdeveloperkenhiveley@gmail.com
+- Repository Owner 
+- Khiveley 
+- https://www.linkedin.com/in/ken-hiveley/ 
+- webdeveloperkenhiveley@gmail.com
 
 
 
