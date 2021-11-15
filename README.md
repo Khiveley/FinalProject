@@ -66,17 +66,17 @@ Upon start, you will be taken to the landing page upon which you can view items 
 
 # Technologies Used
 
-Angular
-Spring Boot
-Spring Security
-Gradle
-TypeScript
-Java
-JavaScript
-HTML 5
-CSS
-TDD
-MySQL Workbench (SQL)
+* Angular
+* Spring Boot
+* Spring Security
+* Gradle
+* TypeScript
+* Java
+* JavaScript
+* HTML 5
+* CSS
+* TDD
+* MySQL Workbench (SQL)
 
 # Application Expected Routes
 
