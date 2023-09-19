@@ -23,7 +23,7 @@ Ken Hiveley
 - Repository Owner 
 - Khiveley 
 - https://www.linkedin.com/in/ken-hiveley/ 
-- webdeveloperkenhiveley@gmail.com
+- kenneth.hiveley@gmail.com
 
 
 
